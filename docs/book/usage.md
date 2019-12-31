@@ -2,43 +2,43 @@
 
 ## Creating a New URI
 
-`Zend\Uri\UriFactory` will build a new URI from scratch if only a scheme is
-passed to `Zend\Uri\UriFactory::factory()`.
+`Laminas\Uri\UriFactory` will build a new URI from scratch if only a scheme is
+passed to `Laminas\Uri\UriFactory::factory()`.
 
-### Creating a New URI with ZendUriUriFactory::factory()
+### Creating a New URI with LaminasUriUriFactory::factory()
 
 ```php
 // To create a new URI from scratch, pass only the scheme
 // followed by a colon.
-$uri = Zend\Uri\UriFactory::factory('http:');
+$uri = Laminas\Uri\UriFactory::factory('http:');
 
-// $uri instanceof Zend\Uri\UriInterface
+// $uri instanceof Laminas\Uri\UriInterface
 ```
 
 To create a new URI from scratch, pass only the scheme followed by a colon to
-`Zend\Uri\UriFactory::factory()`. If an unsupported scheme is passed and no
+`Laminas\Uri\UriFactory::factory()`. If an unsupported scheme is passed and no
 scheme-specific class is specified, a
-`Zend\Uri\Exception\InvalidArgumentException` will be thrown.
+`Laminas\Uri\Exception\InvalidArgumentException` will be thrown.
 
-If the scheme or URI passed is supported, `Zend\Uri\UriFactory::factory()` will
-return a class implementing `Zend\Uri\UriInterface` that specializes in the
+If the scheme or URI passed is supported, `Laminas\Uri\UriFactory::factory()` will
+return a class implementing `Laminas\Uri\UriInterface` that specializes in the
 scheme referenced.
 
 > ### Supported schemes
 >
-> At the time of writing, zend-uri provides built-in support for the following
+> At the time of writing, laminas-uri provides built-in support for the following
 > schemes only: HTTP, HTTPS, MAILTO and FILE.
 
 ### Creating a New Custom-Class URI
 
-You can specify a custom class to be used when using the `Zend\Uri\UriFactory`
+You can specify a custom class to be used when using the `Laminas\Uri\UriFactory`
 by registering your class with the `UriFactory` using
-`Zend\Uri\UriFactory::registerScheme($scheme, $class)`.  This enables you to
+`Laminas\Uri\UriFactory::registerScheme($scheme, $class)`.  This enables you to
 create your own URI class and instantiate new URI objects based on your own
 custom classes.
 
-The 2nd parameter passed to `Zend\Uri\UriFactory::registerScheme()` must be a
-string with the name of a class implementing `Zend\Uri\UriInterface`. The class
+The 2nd parameter passed to `Laminas\Uri\UriFactory::registerScheme()` must be a
+string with the name of a class implementing `Laminas\Uri\UriInterface`. The class
 must either be already loaded, or be loadable by the autoloader.
 
 #### Creating a URI using a custom class
@@ -47,7 +47,7 @@ The following registers the `ftp` scheme with a custom URI class:
 
 ```php
 use MyNamespace\MyClass;
-use Zend\Uri\UriFactory
+use Laminas\Uri\UriFactory
 
 UriFactory::registerScheme('ftp', MyClass::class);
 
@@ -56,33 +56,33 @@ $ftpUri = UriFactory::factory(
 );
 
 // $ftpUri is an instance of MyLibrary\MyClass, which implements
-// Zend\Uri\UriInterface
+// Laminas\Uri\UriInterface
 ```
 
 ## Manipulating an Existing URI
 
 To manipulate an existing URI, pass the entire URI as a string to
-`Zend\Uri\UriFactory::factory()`, and then manipulate the instance returned.
+`Laminas\Uri\UriFactory::factory()`, and then manipulate the instance returned.
 
-### Manipulating an Existing URI with Zend\\Uri\\UriFactory::factory()
+### Manipulating an Existing URI with Laminas\\Uri\\UriFactory::factory()
 
 ```php
-use Zend\Uri\UriFactory;
+use Laminas\Uri\UriFactory;
 
 // To manipulate an existing URI, pass it in.
-$uri = UriFactory::factory('http://www.zend.com');
+$uri = UriFactory::factory('https://www.zend.com');
 
-// $uri instanceof Zend\Uri\UriInterface
+// $uri instanceof Laminas\Uri\UriInterface
 ```
 
 The URI will be parsed and validated. If it is found to be invalid, a
-`Zend\Uri\Exception\InvalidArgumentException` will be thrown immediately.
-Otherwise, `Zend\Uri\UriFactory::factory()` will return a class implementing
-`Zend\Uri\UriInterface` that specializes in the scheme to be manipulated.
+`Laminas\Uri\Exception\InvalidArgumentException` will be thrown immediately.
+Otherwise, `Laminas\Uri\UriFactory::factory()` will return a class implementing
+`Laminas\Uri\UriInterface` that specializes in the scheme to be manipulated.
 
 ## Common Instance Methods
 
-The `Zend\Uri\UriInterface` defines several instance methods that are useful for
+The `Laminas\Uri\UriInterface` defines several instance methods that are useful for
 working with any kind of URI.
 
 ### Getting the Scheme of the URI
@@ -92,7 +92,7 @@ example, the scheme of `http://johndoe@example.com/my/path?query#token` is
 'http'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('mailto:john.doe@example.com');
+$uri = Laminas\Uri\UriFactory::factory('mailto:john.doe@example.com');
 
 $scheme = $uri->getScheme();  // "mailto"
 ```
@@ -107,7 +107,7 @@ colon and comes before the host-part. For example, the userinfo of
 `http://johndoe@example.com/my/path?query#token` is 'johndoe'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('mailto:john.doe@example.com');
+$uri = Laminas\Uri\UriFactory::factory('mailto:john.doe@example.com');
 
 $scheme = $uri->getUserinfo();  // "john.doe"
 ```
@@ -121,7 +121,7 @@ user-part and comes before the path-part. For example, the host of
 `http://johndoe@example.com/my/path?query#token` is 'example.com'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('mailto:john.doe@example.com');
+$uri = Laminas\Uri\UriFactory::factory('mailto:john.doe@example.com');
 
 $scheme = $uri->getHost();  // "example.com"
 ```
@@ -135,7 +135,7 @@ and comes before the path-part. For example, the host of
 `http://johndoe@example.com:80/my/path?query#token` is '80'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://example.com:8080');
+$uri = Laminas\Uri\UriFactory::factory('http://example.com:8080');
 
 $scheme = $uri->getPort();  // "8080"
 ```
@@ -144,7 +144,7 @@ Concrete URI instances can define default ports that can be returned when no
 port is given in the URI:
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://example.com');
+$uri = Laminas\Uri\UriFactory::factory('http://example.com');
 
 $scheme = $uri->getPort();  // "80"
 ```
@@ -158,7 +158,7 @@ and comes before the query-part. For example, the path of
 `http://johndoe@example.com:80/my/path?query#token` is '/my/path'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
+$uri = Laminas\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
 
 $scheme = $uri->getPath();  // "/my/path"
 ```
@@ -172,7 +172,7 @@ path and comes before the fragment. For example, the query of
 `http://johndoe@example.com:80/my/path?query#token` is 'query'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
+$uri = Laminas\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
 
 $scheme = $uri->getQuery();  // "a=b&c=d"
 ```
@@ -183,7 +183,7 @@ The query string often contains key=value pairs and therefore can be split into 
 associative array. This array can be retrieved using `getQueryAsArray()`:
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
+$uri = Laminas\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
 
 $scheme = $uri->getQueryAsArray();
 // [
@@ -199,7 +199,7 @@ the query. For example, the fragment of
 `http://johndoe@example.com:80/my/path?query#token` is 'token'.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
+$uri = Laminas\Uri\UriFactory::factory('http://example.com:80/my/path?a=b&c=d#token');
 
 $scheme = $uri->getFragment();  // "token"
 ```
@@ -211,28 +211,28 @@ The `getFragment()` method returns only the fragment-part of the URI object.
 The `toString()` method returns the string representation of the entire *URI*.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://www.zend.com');
+$uri = Laminas\Uri\UriFactory::factory('https://www.zend.com');
 
-echo $uri->toString();  // "http://www.zend.com"
+echo $uri->toString();  // "https://www.zend.com"
 
 // Alternate method:
-echo (string) $uri;     // "http://www.zend.com"
+echo (string) $uri;     // "https://www.zend.com"
 ```
 
-The `Zend\Uri\UriInterface` defines also the magic `__toString()` method that
+The `Laminas\Uri\UriInterface` defines also the magic `__toString()` method that
 returns the string representation of the URI when the object is cast to a
 string.
 
 ## Validating the URI
 
-When using `Zend\Uri\UriFactory::factory()`, the given URI will always be
-validated and a `Zend\Uri\Exception\InvalidArgumentException` will be thrown
-when the URI is invalid. However, after the `Zend\Uri\UriInterface` is
+When using `Laminas\Uri\UriFactory::factory()`, the given URI will always be
+validated and a `Laminas\Uri\Exception\InvalidArgumentException` will be thrown
+when the URI is invalid. However, after the `Laminas\Uri\UriInterface` is
 instantiated for a new URI or an existing valid one, it is possible that the URI
 can later become invalid after it is manipulated.
 
 ```php
-$uri = Zend\Uri\UriFactory::factory('http://www.zend.com');
+$uri = Laminas\Uri\UriFactory::factory('https://www.zend.com');
 
 $isValid = $uri->isValid();  // TRUE
 ```
