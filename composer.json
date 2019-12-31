@@ -1,38 +1,19 @@
 {
-    "name": "zendframework/zend-uri",
+    "name": "laminas/laminas-uri",
     "description": "A component that aids in manipulating and validating \u00bb Uniform Resource Identifiers (URIs)",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf",
-        "zendframework",
+        "laminas",
         "uri"
     ],
+    "homepage": "https://laminas.dev",
     "support": {
-        "docs": "https://docs.zendframework.com/zend-uri/",
-        "issues": "https://github.com/zendframework/zend-uri/issues",
-        "source": "https://github.com/zendframework/zend-uri",
-        "rss": "https://github.com/zendframework/zend-uri/releases.atom",
-        "chat": "https://zendframework-slack.herokuapp.com",
-        "forum": "https://discourse.zendframework.com/c/questions/components"
-    },
-    "require": {
-        "php": "^5.6 || ^7.0",
-        "zendframework/zend-escaper": "^2.5",
-        "zendframework/zend-validator": "^2.10"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4",
-        "zendframework/zend-coding-standard": "~1.0.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Zend\\Uri\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZendTest\\Uri\\": "test/"
-        }
+        "docs": "https://docs.laminas.dev/laminas-uri/",
+        "issues": "https://github.com/laminas/laminas-uri/issues",
+        "source": "https://github.com/laminas/laminas-uri",
+        "rss": "https://github.com/laminas/laminas-uri/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
     "config": {
         "sort-packages": true
@@ -41,6 +22,26 @@
         "branch-alias": {
             "dev-master": "2.7.x-dev",
             "dev-develop": "2.8.x-dev"
+        }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "laminas/laminas-escaper": "^2.5",
+        "laminas/laminas-validator": "^2.10",
+        "laminas/laminas-zendframework-bridge": "^1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Uri\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\Uri\\": "test/"
         }
     },
     "scripts": {
@@ -52,5 +53,8 @@
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zendframework/zend-uri": "self.version"
     }
 }
