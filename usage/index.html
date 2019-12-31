@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Object oriented interface to URIs, with facilities for validation">  
+    <link rel="canonical" href="https://docs.laminas.dev/usage/">
+    <link rel="shortcut icon" href="/img/trademark-laminas-foundation-rgb.svg">
+
+    <title>Usage - laminas-uri - Laminas Docs</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body id="page-top" class="components">
+
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        
+        <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+        </a>
+        <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
+            Documentation
+        </a>
+
+        
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
+                </li>
+            </ul>
+
+            
+            
+                <div class="d-block d-sm-none">
+                    
+    <div class="subnavigation hidden-print">
+        <h4 class="subnavigation__title">
+            <a href="..">laminas-uri</a>
+        </h4>
+
+        <h5 class="subnavigation__subtitle">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item subnavigation__list-item--active">
+                                <a href="./" class="subnavigation__link">Usage</a>
+                            </li>
+                        
+                    
+                
+            
+        </ul>
+    </div>
+
+                </div>
+            
+
+            
+            <div class="d-block d-sm-none">
+                <div class="component-selector">
+    
+    <h5 class="component-selector__subtitle">Find documentation…</h5>
+    <select class="form-control component-selector__control">
+        <option value="/">Overview</option>
+        <optgroup label="Components"></optgroup>
+    </select>
+</div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    
+    <header class="header">
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="col-6 offset-md-2">
+                <h1 class="header__title">
+                    Components
+
+                    
+                        <small class="header__subtitle">laminas-uri</small>
+                    
+                </h1>
+            </div>
+
+            
+            <div class="col-4 text-sm-right">
+                
+                    
+
+                    <a href="#" class="header__link header__link--search" data-toggle="modal" data-target="#mkdocs_search_modal" title="Open search">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                    <a href="https://github.com/laminas/laminas-uri/" class="header__link header__link--github" title="Go to repository of laminas-uri">
+                        <i class="fa fa-github"></i> GitHub
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+</header>
+
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-sm-12">
+                
+    
+
+    
+    
+        <div class="toc">
+            <h6 class="toc__headline">On this page</h6>
+            <ul class="toc__list">
+                
+                    <li class="toc__entry">
+                        <a href="#creating-a-new-uri" class="toc__link">Creating a New URI</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#manipulating-an-existing-uri" class="toc__link">Manipulating an Existing URI</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#common-instance-methods" class="toc__link">Common Instance Methods</a>
+                    </li>
+                
+                    <li class="toc__entry">
+                        <a href="#validating-the-uri" class="toc__link">Validating the URI</a>
+                    </li>
+                
+            </ul>
+        </div>
+    
+
+            </div>
+            <div class="col-md-7 col-sm-12 content" role="main" data-spy="scroll" data-target=".toc">
+                
+                    <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        
+            <li class="breadcrumb-item"><a href="">Overview</a></li>
+
+            
+                <li class="breadcrumb-item"><a href="..">laminas-uri</a></li>
+
+                
+
+                <li class="breadcrumb-item active" aria-current="page">Usage</li>
+            
+        
+    </ol>
+</nav>
+
+
+
+
+
+
+    
+    
+
+    <h1 id="usage">Usage</h1>
+<h2 id="creating-a-new-uri">Creating a New URI</h2>
+<p><code>Laminas\Uri\UriFactory</code> will build a new URI from scratch if only a scheme is
+passed to <code>Laminas\Uri\UriFactory::factory()</code>.</p>
+<h3>Creating a New URI with LaminasUriUriFactory::factory()</h3>
+<p> <div class=codehilite><pre><span></span><span class=x>// To create a new URI from scratch, pass only the scheme</span>
+<span class=x>// followed by a colon.</span>
+<span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http:&#39;);</span>
+
+<span class=x>// $uri instanceof Laminas\Uri\UriInterface</span>
+</pre></div></p>
+<p>To create a new URI from scratch, pass only the scheme followed by a colon to
+<code>Laminas\Uri\UriFactory::factory()</code>. If an unsupported scheme is passed and no
+scheme-specific class is specified, a
+<code>Laminas\Uri\Exception\InvalidArgumentException</code> will be thrown.</p>
+<p>If the scheme or URI passed is supported, <code>Laminas\Uri\UriFactory::factory()</code> will
+return a class implementing <code>Laminas\Uri\UriInterface</code> that specializes in the
+scheme referenced.</p>
+<blockquote>
+<h3>Supported schemes</h3>
+<p>At the time of writing, laminas-uri provides built-in support for the following
+schemes only: HTTP, HTTPS, MAILTO and FILE.</p>
+</blockquote>
+<h3>Creating a New Custom-Class URI</h3>
+<p>You can specify a custom class to be used when using the <code>Laminas\Uri\UriFactory</code>
+by registering your class with the <code>UriFactory</code> using
+<code>Laminas\Uri\UriFactory::registerScheme($scheme, $class)</code>.  This enables you to
+create your own URI class and instantiate new URI objects based on your own
+custom classes.</p>
+<p>The 2nd parameter passed to <code>Laminas\Uri\UriFactory::registerScheme()</code> must be a
+string with the name of a class implementing <code>Laminas\Uri\UriInterface</code>. The class
+must either be already loaded, or be loadable by the autoloader.</p>
+<h4>Creating a URI using a custom class</h4>
+<p>The following registers the <code>ftp</code> scheme with a custom URI class:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>use MyNamespace\MyClass;</span>
+<span class=x>use Laminas\Uri\UriFactory</span>
+
+<span class=x>UriFactory::registerScheme(&#39;ftp&#39;, MyClass::class);</span>
+
+<span class=x>$ftpUri = UriFactory::factory(</span>
+<span class=x>    &#39;ftp://user@ftp.example.com/path/file&#39;</span>
+<span class=x>);</span>
+
+<span class=x>// $ftpUri is an instance of MyLibrary\MyClass, which implements</span>
+<span class=x>// Laminas\Uri\UriInterface</span>
+</pre></div></p>
+<h2 id="manipulating-an-existing-uri">Manipulating an Existing URI</h2>
+<p>To manipulate an existing URI, pass the entire URI as a string to
+<code>Laminas\Uri\UriFactory::factory()</code>, and then manipulate the instance returned.</p>
+<h3>Manipulating an Existing URI with Laminas\Uri\UriFactory::factory()</h3>
+<p> <div class=codehilite><pre><span></span><span class=x>use Laminas\Uri\UriFactory;</span>
+
+<span class=x>// To manipulate an existing URI, pass it in.</span>
+<span class=x>$uri = UriFactory::factory(&#39;https://www.zend.com&#39;);</span>
+
+<span class=x>// $uri instanceof Laminas\Uri\UriInterface</span>
+</pre></div></p>
+<p>The URI will be parsed and validated. If it is found to be invalid, a
+<code>Laminas\Uri\Exception\InvalidArgumentException</code> will be thrown immediately.
+Otherwise, <code>Laminas\Uri\UriFactory::factory()</code> will return a class implementing
+<code>Laminas\Uri\UriInterface</code> that specializes in the scheme to be manipulated.</p>
+<h2 id="common-instance-methods">Common Instance Methods</h2>
+<p>The <code>Laminas\Uri\UriInterface</code> defines several instance methods that are useful for
+working with any kind of URI.</p>
+<h3>Getting the Scheme of the URI</h3>
+<p>The scheme of the URI is the part of the URI that precedes the colon. For
+example, the scheme of <code>http://johndoe@example.com/my/path?query#token</code> is
+'http'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;mailto:john.doe@example.com&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getScheme();  // &quot;mailto&quot;</span>
+</pre></div></p>
+<p>The <code>getScheme()</code> instance method returns only the scheme part of the URI
+object (not the separator).</p>
+<h3>Getting the Userinfo of the URI</h3>
+<p>The userinfo of the URI is the optional part of the URI that follows the
+colon and comes before the host-part. For example, the userinfo of
+<code>http://johndoe@example.com/my/path?query#token</code> is 'johndoe'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;mailto:john.doe@example.com&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getUserinfo();  // &quot;john.doe&quot;</span>
+</pre></div></p>
+<p>The <code>getUserinfo()</code> method returns only the userinfo part of the URI object.</p>
+<h3>Getting the host of the URI</h3>
+<p>The host of the URI is the optional part of the URI that follows the
+user-part and comes before the path-part. For example, the host of
+<code>http://johndoe@example.com/my/path?query#token</code> is 'example.com'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;mailto:john.doe@example.com&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getHost();  // &quot;example.com&quot;</span>
+</pre></div></p>
+<p>The <code>getHost()</code> method returns only the host part of the URI object.</p>
+<blockquote>
+<h3>Host is case insensitive</h3>
+<p>Per <a href="https://tools.ietf.org/html/rfc3986#section-3.2.2">IETF 3986 Section 3.2.2</a>,
+the host segment of a URL is considered case insensitive. As such, starting in
+version 2.7.0, we now cast the hostname to lowercase, and <code>getHost()</code> will
+always return a lowercase representation.</p>
+</blockquote>
+<h3>Getting the port of the URI</h3>
+<p>The port of the URI is the optional part of the URI that follows the host-part
+and comes before the path-part. For example, the host of
+<code>http://johndoe@example.com:80/my/path?query#token</code> is '80'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http://example.com:8080&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getPort();  // &quot;8080&quot;</span>
+</pre></div></p>
+<p>Concrete URI instances can define default ports that can be returned when no
+port is given in the URI:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http://example.com&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getPort();  // &quot;80&quot;</span>
+</pre></div></p>
+<p>The <code>getHost()</code> method returns only the port part of the URI object.</p>
+<h3>Getting the path of the URI</h3>
+<p>The path of the URI is a mandatory part of the URI that follows the port
+and comes before the query-part. For example, the path of
+<code>http://johndoe@example.com:80/my/path?query#token</code> is '/my/path'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http://example.com:80/my/path?a=b&amp;c=d#token&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getPath();  // &quot;/my/path&quot;</span>
+</pre></div></p>
+<p>The <code>getPath()</code> method returns only the path of the URI object.</p>
+<h3>Getting the query-part of the URI</h3>
+<p>The query-part of the URI is an optional part of the URI that follows the
+path and comes before the fragment. For example, the query of
+<code>http://johndoe@example.com:80/my/path?query#token</code> is 'query'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http://example.com:80/my/path?a=b&amp;c=d#token&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getQuery();  // &quot;a=b&amp;c=d&quot;</span>
+</pre></div></p>
+<p>The <code>getQuery()</code> method returns only the query-part of the URI object.</p>
+<p>The query string often contains key=value pairs and therefore can be split into an
+associative array. This array can be retrieved using <code>getQueryAsArray()</code>:</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http://example.com:80/my/path?a=b&amp;c=d#token&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getQueryAsArray();</span>
+<span class=x>// [</span>
+<span class=x>//  &#39;a&#39; =&gt; &#39;b&#39;,</span>
+<span class=x>//  &#39;c&#39; =&gt; &#39;d&#39;,</span>
+<span class=x>// ]</span>
+</pre></div></p>
+<h3>Getting the fragment-part of the URI</h3>
+<p>The fragment-part of the URI is an optional part of the URI that follows
+the query. For example, the fragment of
+<code>http://johndoe@example.com:80/my/path?query#token</code> is 'token'.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;http://example.com:80/my/path?a=b&amp;c=d#token&#39;);</span>
+
+<span class=x>$scheme = $uri-&gt;getFragment();  // &quot;token&quot;</span>
+</pre></div></p>
+<p>The <code>getFragment()</code> method returns only the fragment-part of the URI object.</p>
+<h3>Getting the Entire URI</h3>
+<p>The <code>toString()</code> method returns the string representation of the entire <em>URI</em>.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;https://www.zend.com&#39;);</span>
+
+<span class=x>echo $uri-&gt;toString();  // &quot;https://www.zend.com&quot;</span>
+
+<span class=x>// Alternate method:</span>
+<span class=x>echo (string) $uri;     // &quot;https://www.zend.com&quot;</span>
+</pre></div></p>
+<p>The <code>Laminas\Uri\UriInterface</code> defines also the magic <code>__toString()</code> method that
+returns the string representation of the URI when the object is cast to a
+string.</p>
+<h2 id="validating-the-uri">Validating the URI</h2>
+<p>When using <code>Laminas\Uri\UriFactory::factory()</code>, the given URI will always be
+validated and a <code>Laminas\Uri\Exception\InvalidArgumentException</code> will be thrown
+when the URI is invalid. However, after the <code>Laminas\Uri\UriInterface</code> is
+instantiated for a new URI or an existing valid one, it is possible that the URI
+can later become invalid after it is manipulated.</p>
+<p> <div class=codehilite><pre><span></span><span class=x>$uri = Laminas\Uri\UriFactory::factory(&#39;https://www.zend.com&#39;);</span>
+
+<span class=x>$isValid = $uri-&gt;isValid();  // TRUE</span>
+</pre></div></p>
+<p>The <code>isValid()</code> instance method provides a means to check that the URI object
+is still valid.</p>
+
+
+
+
+    <nav>
+    <ul class="page-nav hidden-print">
+
+        
+        <li class="page-nav__item">
+            
+                <a rel="prev" class="page-nav__link page-nav__link--prev" href="../intro/">
+                    <i class="fa fa-chevron-left"></i> Previous
+                </a>
+            
+        </li>
+
+        
+        <li class="page-nav__item">
+            
+        </li>
+    </ul>
+</nav>
+
+
+
+
+    <div class="help-wanted">
+        <p>
+            Found a mistake or want to contribute to the documentation?
+            <a href="https://github.com/laminas/laminas-uri/edit/master/docs/book/usage.md" target="_blank" class="help-wanted__link">
+                Edit this page on GitHub!
+            </a>
+        </p>
+    </div>
+
+                
+            </div>
+            <div class="col-md-3 col-sm-12 sidebar">
+                
+                    <div class="component-selector">
+    
+    <h5 class="component-selector__subtitle">Find documentation…</h5>
+    <select class="form-control component-selector__control">
+        <option value="/">Overview</option>
+        <optgroup label="Components"></optgroup>
+    </select>
+</div>
+                    
+    <div class="subnavigation hidden-print">
+        <h4 class="subnavigation__title">
+            <a href="..">laminas-uri</a>
+        </h4>
+
+        <h5 class="subnavigation__subtitle">Table of Contents</h5>
+
+        <ul class="subnavigation__list">
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item ">
+                                <a href="../intro/" class="subnavigation__link">Introduction</a>
+                            </li>
+                        
+                    
+                
+            
+
+                
+                
+
+                    
+                    
+                        
+                            <li class="subnavigation__list-item subnavigation__list-item--active">
+                                <a href="./" class="subnavigation__link">Usage</a>
+                            </li>
+                        
+                    
+                
+            
+        </ul>
+    </div>
+
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+    <div class="container">
+
+        
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="footer__button" href="#page-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7 offset-md-2">
+                <h5>Laminas</h5>
+                <ul>
+                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
+                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+
+            
+            <div class="col-md-4 offset-md-2">
+                <h4 class="footer__headline">Support</h4>
+                <ul class="support__list">
+                    <li class="support__list-item">
+                        <a href="https://discourse.laminas.dev" class="support__link" title="Forum"><i class="fa fa-comments"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://laminas.dev/chat" class="support__link" title="Chat"><i class="fa fa-slack"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://github.com/laminas" class="support__link" title="Github"><i class="fa fa-github"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://twitter.com/getlaminas" class="support__link" title="Twitter"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://getlaminas.org/blog/feed-rss.xml" class="support__link" title="Blog feed"><i class="fa fa-rss"></i></a>
+                    </li>
+                    <li class="support__list-item">
+                        <a href="https://getlaminas.org/security/feed" class="support__link" title="Security feed"><i class="fa fa-rss-square"></i></a>
+                    </li>
+                </ul>
+            </div>
+
+            
+            <div class="col-md-3">
+                <h4 class="footer__headline">License</h4>
+                <p>
+                    Code licensed under <a
+                        href="https://github.com/laminas/laminas-uri//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                </p>
+            </div>
+
+            
+            <div class="col-md-3">
+                <h4 class="footer__headline">Copyright</h4>
+                <p>
+                    <!--Built with love by the Laminas team with the help of our
+                    <a href="https://github.com/laminas/laminas-uri//graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        let base_url = '..',
+            project  = "components",
+            siteName = 'laminas-uri';
+    </script>
+    <script src="/js/scripts.js"></script>
+        <script src="../search/main.js"></script>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search in laminas-uri" id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+</html>
