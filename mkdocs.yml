@@ -4,6 +4,6 @@ nav:
     - Home: index.md
     - Introduction: intro.md
     - Usage: usage.md
-site_name: zend-uri
+site_name: laminas-uri
 site_description: "Object oriented interface to URIs, with facilities for validation"
-repo_url: 'https://github.com/zendframework/zend-uri'
+repo_url: 'https://github.com/laminas/laminas-uri'
