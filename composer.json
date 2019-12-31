@@ -1,21 +1,22 @@
 {
-    "name": "zendframework/zend-uri",
+    "name": "laminas/laminas-uri",
     "description": "a component that aids in manipulating and validating \u00bb Uniform Resource Identifiers (URIs)",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "uri"
     ],
-    "homepage": "https://github.com/zendframework/zend-uri",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Uri\\": "src/"
-        }
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-uri/",
+        "issues": "https://github.com/laminas/laminas-uri/issues",
+        "source": "https://github.com/laminas/laminas-uri",
+        "rss": "https://github.com/laminas/laminas-uri/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": ">=5.3.3",
-        "zendframework/zend-escaper": "self.version",
-        "zendframework/zend-validator": "self.version"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -23,14 +24,28 @@
             "dev-develop": "2.3-dev"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "ZendTest\\Uri\\": "test/"
-        }
+    "require": {
+        "php": ">=5.3.3",
+        "laminas/laminas-escaper": "self.version",
+        "laminas/laminas-validator": "self.version",
+        "laminas/laminas-zendframework-bridge": "^1.0"
     },
     "require-dev": {
         "fabpot/php-cs-fixer": "1.7.*",
-        "satooshi/php-coveralls": "dev-master",
-        "phpunit/PHPUnit": "~4.0"
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Uri\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\Uri\\": "test/"
+        }
+    },
+    "replace": {
+        "zendframework/zend-uri": "self.version"
     }
 }
