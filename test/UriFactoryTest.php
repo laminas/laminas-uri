@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Uri;
+namespace LaminasTest\Uri;
 
-use Zend\Uri\UriFactory;
+use Laminas\Uri\UriFactory;
 
 /**
- * @group      Zend_Uri
+ * @group      Laminas_Uri
  */
 class UriFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,11 +28,11 @@ class UriFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisteringNewScheme($scheme, $class)
     {
-        $this->assertAttributeNotContains($class, 'schemeClasses', '\Zend\Uri\UriFactory');
+        $this->assertAttributeNotContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
         UriFactory::registerScheme($scheme, $class);
-        $this->assertAttributeContains($class, 'schemeClasses', '\Zend\Uri\UriFactory');
+        $this->assertAttributeContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
         UriFactory::unregisterScheme($scheme);
-        $this->assertAttributeNotContains($class, 'schemeClasses', '\Zend\Uri\UriFactory');
+        $this->assertAttributeNotContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
     }
 
     /**
@@ -69,10 +68,10 @@ class UriFactoryTest extends \PHPUnit_Framework_TestCase
     public function createUriWithFactoryProvider()
     {
         return [
-            ['http://example.com', 'Zend\Uri\Http'],
-            ['https://example.com', 'Zend\Uri\Http'],
-            ['mailto://example.com', 'Zend\Uri\Mailto'],
-            ['file://example.com', 'Zend\Uri\File'],
+            ['http://example.com', 'Laminas\Uri\Http'],
+            ['https://example.com', 'Laminas\Uri\Http'],
+            ['mailto://example.com', 'Laminas\Uri\Mailto'],
+            ['file://example.com', 'Laminas\Uri\File'],
         ];
     }
 
@@ -80,7 +79,7 @@ class UriFactoryTest extends \PHPUnit_Framework_TestCase
      * Test, that unknown Schemes will result in an exception
      *
      * @param string $uri an uri with an unknown scheme
-     * @expectedException Zend\Uri\Exception\InvalidArgumentException
+     * @expectedException Laminas\Uri\Exception\InvalidArgumentException
      * @dataProvider unknownSchemeThrowsExceptionProvider
      */
     public function testUnknownSchemeThrowsException($uri)

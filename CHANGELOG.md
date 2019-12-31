@@ -18,6 +18,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#3](https://github.com/zendframework/zend-uri/pull/3) updates dependencies to
+- [zendframework/zend-uri#3](https://github.com/zendframework/zend-uri/pull/3) updates dependencies to
   allow the component to work with both PHP 5 and PHP 7 versions, as well as
-  all 2.X versions of required Zend components.
+  all 2.X versions of required Laminas components.
