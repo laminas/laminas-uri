@@ -1,18 +1,19 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-uri for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-uri/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Uri;
+namespace LaminasTest\Uri;
 
+use Laminas\Uri\Exception as UriException;
+use Laminas\Uri\Uri;
 use PHPUnit\Framework\TestCase;
-use Zend\Uri\Uri;
-use Zend\Uri\Exception as UriException;
 
 /**
- * @group      Zend_Uri
+ * @group      Laminas_Uri
  */
 class UriTest extends TestCase
 {
@@ -105,9 +106,9 @@ class UriTest extends TestCase
     /**
      * Test that we can parse a malformed URI
      *
-     * @link http://framework.zend.com/issues/browse/ZF-11286
+     * @link https://getlaminas.org/issues/browse/Laminas-11286
      */
-    public function testCanParseMalformedUrlZF11286()
+    public function testCanParseMalformedUrlLaminas11286()
     {
         $urlString = 'http://example.org/SitePages/file has spaces.html?foo=bar';
         $uri = new Uri($urlString);
@@ -223,7 +224,7 @@ class UriTest extends TestCase
     }
 
     /**
-     * @group ZF-1480
+     * @group Laminas-1480
      */
     public function testGetQueryAsArrayReturnsCorrectArray()
     {
@@ -382,7 +383,7 @@ class UriTest extends TestCase
     /**
      * Test that invalid URIs fail validation
      *
-     * @param \Zend\Uri\Uri $uri
+     * @param \Laminas\Uri\Uri $uri
      * @dataProvider invalidUriObjectProvider
      */
     public function testInvalidUriIsInvalid(Uri $uri)
@@ -393,7 +394,7 @@ class UriTest extends TestCase
     /**
      * Test that invalid relative URIs fail validation
      *
-     * @param \Zend\Uri\Uri $uri
+     * @param \Laminas\Uri\Uri $uri
      * @dataProvider invalidRelativeUriObjectProvider
      */
     public function testInvalidRelativeUriIsInvalid(Uri $uri)
@@ -608,7 +609,7 @@ class UriTest extends TestCase
     }
 
     /**
-     * @group ZF-1480
+     * @group Laminas-1480
      */
     /*
     public function testAddReplaceQueryParametersModifiesQueryAndReturnsOldQuery()
@@ -626,7 +627,7 @@ class UriTest extends TestCase
     */
 
     /**
-     * @group ZF-1480
+     * @group Laminas-1480
      */
     /*
     public function testRemoveQueryParametersModifiesQueryAndReturnsOldQuery()
@@ -813,7 +814,7 @@ class UriTest extends TestCase
     {
         return [
             ['a:b'],
-            ['http://www.zend.com'],
+            ['https://www.zend.com'],
             ['https://example.com:10082/foo/bar?query'],
             ['../relative/path'],
             ['?queryOnly'],
@@ -1105,7 +1106,7 @@ class UriTest extends TestCase
             ['arr.gr'],
             ['localhost'],
             ['loca.host'],
-            ['zend-framework.test'],
+            ['laminas-framework.test'],
             ['a.b.c.d'],
             ['a1.b2.c3.d4'],
             ['some-domain-with-dashes'],
@@ -1140,7 +1141,7 @@ class UriTest extends TestCase
             ['example.com'],
             ['some-path'],
             ['foo:bar'],
-            ['C:/Program%20Files/Zend'],
+            ['C:/Program%20Files/Laminas'],
         ];
     }
 
@@ -1150,7 +1151,7 @@ class UriTest extends TestCase
             ['?', '%3F'],
             ['/#', '/%23'],
 
-            // See http://framework.zend.com/issues/browse/ZF-11286
+            // See https://getlaminas.org/issues/browse/Laminas-11286
             ['Giri%C5%9F Sayfas%C4%B1.aspx', 'Giri%C5%9F%20Sayfas%C4%B1.aspx']
         ];
     }

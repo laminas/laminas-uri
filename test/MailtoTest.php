@@ -1,20 +1,21 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-uri for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-uri/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Uri;
+namespace LaminasTest\Uri;
 
-use Zend\Uri\Exception\InvalidUriPartException;
-use Zend\Uri\Mailto as MailtoUri;
+use Laminas\Uri\Exception\InvalidUriPartException;
+use Laminas\Uri\Mailto as MailtoUri;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group      Zend_Uri
- * @group      Zend_Uri_Http
- * @group      Zend_Http
+ * @group      Laminas_Uri
+ * @group      Laminas_Uri_Http
+ * @group      Laminas_Http
  */
 class MailtoTest extends TestCase
 {
