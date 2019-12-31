@@ -1,18 +1,17 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Uri;
+namespace LaminasTest\Uri;
 
-use Zend\Uri\Uri;
+use Laminas\Uri\Uri;
 
 /**
- * @group      Zend_Uri
+ * @group      Laminas_Uri
  */
 class UriTest extends \PHPUnit_Framework_TestCase
 {
@@ -77,7 +76,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseSchemeInvalidInput($input)
     {
-        $this->setExpectedException('Zend\Uri\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Uri\Exception\InvalidArgumentException');
         $scheme = Uri::parseScheme($input);
     }
 
@@ -98,16 +97,16 @@ class UriTest extends \PHPUnit_Framework_TestCase
      */
     public function testToStringThrowsExceptionIfInvalid(Uri $uri)
     {
-        $this->setExpectedException('Zend\Uri\Exception\InvalidUriException');
+        $this->setExpectedException('Laminas\Uri\Exception\InvalidUriException');
         $string = $uri->toString();
     }
 
     /**
      * Test that we can parse a malformed URI
      *
-     * @link http://framework.zend.com/issues/browse/ZF-11286
+     * @link https://getlaminas.org/issues/browse/Laminas-11286
      */
-    public function testCanParseMalformedUrlZF11286()
+    public function testCanParseMalformedUrlLaminas11286()
     {
         $urlString = 'http://example.org/SitePages/file has spaces.html?foo=bar';
         $uri = new Uri($urlString);
@@ -223,7 +222,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @group ZF-1480
+     * @group Laminas-1480
      */
     public function testGetQueryAsArrayReturnsCorrectArray()
     {
@@ -295,7 +294,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     public function testSetInvalidScheme($scheme)
     {
         $uri = new Uri;
-        $this->setExpectedException('Zend\Uri\Exception\InvalidUriPartException');
+        $this->setExpectedException('Laminas\Uri\Exception\InvalidUriPartException');
         $uri->setScheme($scheme);
     }
 
@@ -321,7 +320,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     public function testSetInvalidHost($host)
     {
         $uri = new Uri;
-        $this->setExpectedException('Zend\Uri\Exception\InvalidUriPartException');
+        $this->setExpectedException('Laminas\Uri\Exception\InvalidUriPartException');
         $uri->setHost($host);
     }
 
@@ -382,7 +381,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that invalid URIs fail validation
      *
-     * @param \Zend\Uri\Uri $uri
+     * @param \Laminas\Uri\Uri $uri
      * @dataProvider invalidUriObjectProvider
      */
     public function testInvalidUriIsInvalid(Uri $uri)
@@ -393,7 +392,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     /**
      * Test that invalid relative URIs fail validation
      *
-     * @param \Zend\Uri\Uri $uri
+     * @param \Laminas\Uri\Uri $uri
      * @dataProvider invalidRelativeUriObjectProvider
      */
     public function testInvalidRelativeUriIsInvalid(Uri $uri)
@@ -608,7 +607,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @group ZF-1480
+     * @group Laminas-1480
      */
     /*
     public function testAddReplaceQueryParametersModifiesQueryAndReturnsOldQuery()
@@ -626,7 +625,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     */
 
     /**
-     * @group ZF-1480
+     * @group Laminas-1480
      */
     /*
     public function testRemoveQueryParametersModifiesQueryAndReturnsOldQuery()
@@ -759,7 +758,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorInvalidInput($input)
     {
-        $this->setExpectedException('Zend\Uri\Exception\InvalidArgumentException');
+        $this->setExpectedException('Laminas\Uri\Exception\InvalidArgumentException');
         $uri = new Uri($input);
     }
 
@@ -813,7 +812,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
     {
         return array(
             array('a:b'),
-            array('http://www.zend.com'),
+            array('https://www.zend.com'),
             array('https://example.com:10082/foo/bar?query'),
             array('../relative/path'),
             array('?queryOnly'),
@@ -1105,7 +1104,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
             array('arr.gr'),
             array('localhost'),
             array('loca.host'),
-            array('zend-framework.test'),
+            array('laminas-framework.test'),
             array('a.b.c.d'),
             array('a1.b2.c3.d4'),
             array('some-domain-with-dashes'),
@@ -1140,7 +1139,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
             array('example.com'),
             array('some-path'),
             array('foo:bar'),
-            array('C:/Program%20Files/Zend'),
+            array('C:/Program%20Files/Laminas'),
         );
     }
 
@@ -1150,7 +1149,7 @@ class UriTest extends \PHPUnit_Framework_TestCase
             array('?', '%3F'),
             array('/#', '/%23'),
 
-            // See http://framework.zend.com/issues/browse/ZF-11286
+            // See https://getlaminas.org/issues/browse/Laminas-11286
             array('Giri%C5%9F Sayfas%C4%B1.aspx', 'Giri%C5%9F%20Sayfas%C4%B1.aspx')
         );
     }
