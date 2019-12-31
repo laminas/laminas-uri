@@ -1,22 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\Uri;
+namespace LaminasTest\Uri;
 
-use Zend\Uri\Exception\InvalidUriPartException;
-use Zend\Uri\File as FileUri;
+use Laminas\Uri\Exception\InvalidUriPartException;
+use Laminas\Uri\File as FileUri;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @group      Zend_Uri
- * @group      Zend_Uri_Http
- * @group      Zend_Http
+ * @group      Laminas_Uri
+ * @group      Laminas_Uri_Http
+ * @group      Laminas_Http
  */
 class FileTest extends TestCase
 {
@@ -88,7 +87,7 @@ class FileTest extends TestCase
     public static function windowsUris()
     {
         return [
-            ['C:\Program Files\Zend Framework\README', 'C:/Program%20Files/Zend%20Framework/README'],
+            ['C:\Program Files\Laminas\README', 'C:/Program%20Files/Laminas%20Framework/README'],
         ];
     }
 

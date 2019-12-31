@@ -6,8 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#4](https://github.com/zendframework/zend-uri/pull/4) adds and publishes the
-  documentation to https://zendframework.github.io/zend-uri/
+- [zendframework/zend-uri#4](https://github.com/zendframework/zend-uri/pull/4) adds and publishes the
+  documentation to https://docs.laminas.dev/laminas-uri/
 
 ### Deprecated
 
@@ -15,15 +15,15 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#16](https://github.com/zendframework/zend-uri/pull/16) removes support for
+- [zendframework/zend-uri#16](https://github.com/zendframework/zend-uri/pull/16) removes support for
   PHP 5.5.
 
-- [#16](https://github.com/zendframework/zend-uri/pull/16) removes support for
+- [zendframework/zend-uri#16](https://github.com/zendframework/zend-uri/pull/16) removes support for
   HHVM.
 
 ### Fixed
 
-- [#17](https://github.com/zendframework/zend-uri/pull/17) updates the path
+- [zendframework/zend-uri#17](https://github.com/zendframework/zend-uri/pull/17) updates the path
   encoding algorithm to allow `(` and `)` characters as path characters (per
   the RFC-3986, these are valid sub-delimiters allowed within a path).
 
@@ -43,6 +43,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#3](https://github.com/zendframework/zend-uri/pull/3) updates dependencies to
+- [zendframework/zend-uri#3](https://github.com/zendframework/zend-uri/pull/3) updates dependencies to
   allow the component to work with both PHP 5 and PHP 7 versions, as well as
-  all 2.X versions of required Zend components.
+  all 2.X versions of required Laminas components.

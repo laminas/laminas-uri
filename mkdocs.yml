@@ -1,10 +1,9 @@
 docs_dir: doc/book
 site_dir: doc/html
-pages:
+nav:
     - index.md
     - Intro: intro.md
     - Usage: usage.md
-site_name: zend-uri
-site_description: zend-uri
-repo_url: 'https://github.com/zendframework/zend-uri'
-copyright: 'Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+site_name: laminas-uri
+site_description: laminas-uri
+repo_url: 'https://github.com/laminas/laminas-uri'
