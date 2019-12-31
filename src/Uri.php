@@ -1,23 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Uri
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Uri;
+namespace Laminas\Uri;
 
-use Zend\Escaper\Escaper;
-use Zend\Validator;
+use Laminas\Escaper\Escaper;
+use Laminas\Validator;
 
 /**
  * Generic URI handler
  *
- * @category  Zend
- * @package   Zend_Uri
+ * @category  Laminas
+ * @package   Laminas_Uri
  */
 class Uri implements UriInterface
 {
@@ -664,7 +662,7 @@ class Uri implements UriInterface
      *
      * If the scheme is not valid according to the generic scheme syntax or
      * is not acceptable by the specific URI class (e.g. 'http' or 'https' are
-     * the only acceptable schemes for the Zend\Uri\Http class) an exception
+     * the only acceptable schemes for the Laminas\Uri\Http class) an exception
      * will be thrown.
      *
      * You can check if a scheme is valid before setting it using the
