@@ -1,11 +1,12 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-uri for the canonical source repository
- * @copyright Copyright (c) 2005-2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-uri/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-uri for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-uri/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-uri/blob/master/LICENSE.md New BSD License
  */
 
-namespace Zend\Uri;
+namespace Laminas\Uri;
 
 /**
  * HTTP URI handler
@@ -191,7 +192,7 @@ class Http extends Uri
      * If no port is set, will return the default port according to the scheme
      *
      * @return int
-     * @see    Zend\Uri\Uri::getPort()
+     * @see    Laminas\Uri\Uri::getPort()
      */
     public function getPort()
     {
