@@ -1,11 +1,11 @@
 docs_dir: docs/book
 site_dir: docs/html
 nav:
-    - { Home: index.md }
-    - { Introduction: intro.md }
-    - { Usage: usage.md }
+    - Home: index.md
+    - Introduction: intro.md
+    - Usage: usage.md
 site_name: laminas-uri
-site_description: 'Object oriented interface to URIs, with facilities for validation'
+site_description: "Object oriented interface to URIs, with facilities for validation"
 repo_url: 'https://github.com/laminas/laminas-uri'
 extra:
     project: Components
