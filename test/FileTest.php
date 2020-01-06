@@ -87,7 +87,7 @@ class FileTest extends TestCase
     public static function windowsUris()
     {
         return [
-            ['C:\Program Files\Laminas\README', 'C:/Program%20Files/Laminas%20Framework/README'],
+            ['C:\Program Files\Laminas\README', 'C:/Program%20Files/Laminas/README'],
         ];
     }
 
