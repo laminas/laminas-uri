@@ -1,6 +1,6 @@
 # laminas-uri
 
-[![Build Status](https://travis-ci.org/laminas/laminas-uri.svg?branch=master)](https://travis-ci.org/laminas/laminas-uri)
+[![Build Status](https://travis-ci.com/laminas/laminas-uri.svg?branch=master)](https://travis-ci.com/laminas/laminas-uri)
 [![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-uri/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-uri?branch=master)
 
 laminas-uri aids in manipulating and validating Uniform Resource Identifiers
