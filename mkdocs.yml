@@ -9,4 +9,3 @@ site_description: "Object oriented interface to URIs, with facilities for valida
 repo_url: 'https://github.com/laminas/laminas-uri'
 extra:
     project: Components
-    project_url: 'https://docs.laminas.dev'
