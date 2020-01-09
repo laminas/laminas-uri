@@ -29,11 +29,11 @@ class UriFactoryTest extends TestCase
      */
     public function testRegisteringNewScheme($scheme, $class)
     {
-        $this->assertAttributeNotContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
+        $this->assertNull(UriFactory::getRegisteredSchemeClass($scheme));
         UriFactory::registerScheme($scheme, $class);
-        $this->assertAttributeContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
+        $this->assertEquals(UriFactory::getRegisteredSchemeClass($scheme), $class);
         UriFactory::unregisterScheme($scheme);
-        $this->assertAttributeNotContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
+        $this->assertNull(UriFactory::getRegisteredSchemeClass($scheme));
     }
 
     /**
