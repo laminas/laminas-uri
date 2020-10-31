@@ -33,11 +33,11 @@ class UriFactoryTest extends TestCase
      */
     public function testRegisteringNewScheme($scheme, $class)
     {
-        $this->assertAttributeNotContains($class, 'schemeClasses', UriFactory::class);
+        self::assertNull( UriFactory::getRegisteredSchemeClass($scheme));
         UriFactory::registerScheme($scheme, $class);
-        $this->assertAttributeContains($class, 'schemeClasses', UriFactory::class);
+        self::assertSame($class, UriFactory::getRegisteredSchemeClass($scheme));
         UriFactory::unregisterScheme($scheme);
-        $this->assertAttributeNotContains($class, 'schemeClasses', UriFactory::class);
+        self::assertNull(  UriFactory::getRegisteredSchemeClass($scheme));
     }
 
     /**
