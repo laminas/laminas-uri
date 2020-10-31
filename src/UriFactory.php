@@ -82,11 +82,11 @@ abstract class UriFactory
      */
     public static function getRegisteredSchemeClass($scheme)
     {
-        if (isset(static::$schemeClasses[$scheme])) {
-            return static::$schemeClasses[$scheme];
+        if (! isset(static::$schemeClasses[$scheme])) {
+            return null;
         }
 
-        return;
+        return static::$schemeClasses[$scheme];
     }
 
     /**

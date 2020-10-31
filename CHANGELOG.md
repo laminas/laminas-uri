@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#12](https://github.com/laminas/laminas-uri/pull/12) Adds PHP 8.0 support
 
 ### Changed
 
