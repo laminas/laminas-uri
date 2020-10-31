@@ -49,14 +49,14 @@ class Uri implements UriInterface
     /**
      * Character classes defined in RFC-3986
      */
-    const CHAR_UNRESERVED = 'a-zA-Z0-9_\-\.~';
-    const CHAR_GEN_DELIMS = ':\/\?#\[\]@';
-    const CHAR_SUB_DELIMS = '!\$&\'\(\)\*\+,;=';
-    const CHAR_RESERVED   = ':\/\?#\[\]@!\$&\'\(\)\*\+,;=';
+    public const CHAR_UNRESERVED = 'a-zA-Z0-9_\-\.~';
+    public const CHAR_GEN_DELIMS = ':\/\?#\[\]@';
+    public const CHAR_SUB_DELIMS = '!\$&\'\(\)\*\+,;=';
+    public const CHAR_RESERVED   = ':\/\?#\[\]@!\$&\'\(\)\*\+,;=';
     /**
      * Not in the spec - those characters have special meaning in urlencoded query parameters
      */
-    const CHAR_QUERY_DELIMS = '!\$\'\(\)\*\,';
+    public const CHAR_QUERY_DELIMS = '!\$\'\(\)\*\,';
 
     /**
      * Host part types represented as binary masks
@@ -65,18 +65,18 @@ class Uri implements UriInterface
      * Place 1 or 0 in the different positions for enable or disable the part.
      * Finally use a hexadecimal representation.
      */
-    const HOST_IPV4                           = 0x01; //00001
-    const HOST_IPV6                           = 0x02; //00010
-    const HOST_IPVFUTURE                      = 0x04; //00100
-    const HOST_IPVANY                         = 0x07; //00111
-    const HOST_DNS                            = 0x08; //01000
-    const HOST_DNS_OR_IPV4                    = 0x09; //01001
-    const HOST_DNS_OR_IPV6                    = 0x0A; //01010
-    const HOST_DNS_OR_IPV4_OR_IPV6            = 0x0B; //01011
-    const HOST_DNS_OR_IPVANY                  = 0x0F; //01111
-    const HOST_REGNAME                        = 0x10; //10000
-    const HOST_DNS_OR_IPV4_OR_IPV6_OR_REGNAME = 0x1B; //11011
-    const HOST_ALL                            = 0x1F; //11111
+    public const HOST_IPV4                           = 0x01; //00001
+    public const HOST_IPV6                           = 0x02; //00010
+    public const HOST_IPVFUTURE                      = 0x04; //00100
+    public const HOST_IPVANY                         = 0x07; //00111
+    public const HOST_DNS                            = 0x08; //01000
+    public const HOST_DNS_OR_IPV4                    = 0x09; //01001
+    public const HOST_DNS_OR_IPV6                    = 0x0A; //01010
+    public const HOST_DNS_OR_IPV4_OR_IPV6            = 0x0B; //01011
+    public const HOST_DNS_OR_IPVANY                  = 0x0F; //01111
+    public const HOST_REGNAME                        = 0x10; //10000
+    public const HOST_DNS_OR_IPV4_OR_IPV6_OR_REGNAME = 0x1B; //11011
+    public const HOST_ALL                            = 0x1F; //11111
 
     /**
      * URI scheme
