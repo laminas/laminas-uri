@@ -12,6 +12,8 @@ use Laminas\Uri\Exception\InvalidUriPartException;
 use Laminas\Uri\Mailto as MailtoUri;
 use PHPUnit\Framework\TestCase;
 
+use function var_export;
+
 /**
  * @group      Laminas_Uri
  * @group      Laminas_Uri_Http
@@ -48,10 +50,13 @@ class MailtoTest extends TestCase
             ['file'],
             ['http'],
             ['g'],
-            ['mailto:']
+            ['mailto:'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function invalidUris()
     {
         return [
@@ -75,7 +80,7 @@ class MailtoTest extends TestCase
      */
     public function testValidScheme($scheme)
     {
-        $uri = new MailtoUri;
+        $uri = new MailtoUri();
         $uri->setScheme($scheme);
         $this->assertEquals($scheme, $uri->getScheme());
     }
@@ -88,7 +93,7 @@ class MailtoTest extends TestCase
      */
     public function testInvalidScheme($scheme)
     {
-        $uri = new MailtoUri;
+        $uri = new MailtoUri();
         $this->expectException(InvalidUriPartException::class);
         $uri->setScheme($scheme);
     }
@@ -139,11 +144,12 @@ class MailtoTest extends TestCase
     }
 
     /**
+     * @param string $uri
      * @dataProvider invalidUris
      */
     public function testInvalidMailtoUris($uri)
     {
-        $uri = new MailtoUri($uri);
+        $uri   = new MailtoUri($uri);
         $parts = [
             'scheme'    => $uri->getScheme(),
             'user_info' => $uri->getUserInfo(),

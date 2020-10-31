@@ -38,6 +38,9 @@ class HttpTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string|bool>>
+     */
     public function validHostProvider()
     {
         return [
@@ -77,10 +80,13 @@ class HttpTest extends TestCase
             ['file'],
             ['mailto'],
             ['g'],
-            ['http:']
+            ['http:'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function portNormalizationTestsProvider()
     {
         return [
@@ -104,7 +110,7 @@ class HttpTest extends TestCase
      */
     public function testValidScheme($scheme)
     {
-        $uri = new HttpUri;
+        $uri = new HttpUri();
         $uri->setScheme($scheme);
         $this->assertEquals($scheme, $uri->getScheme());
     }
@@ -117,7 +123,7 @@ class HttpTest extends TestCase
      */
     public function testInvalidScheme($scheme)
     {
-        $uri = new HttpUri;
+        $uri = new HttpUri();
         $this->expectException(InvalidUriPartException::class);
         $uri->setScheme($scheme);
     }
@@ -235,7 +241,7 @@ class HttpTest extends TestCase
     public function testGetPortDoesntModifyUrlHttp()
     {
         $origUri = 'http://www.example.com/foo';
-        $uri = new HttpUri($origUri);
+        $uri     = new HttpUri($origUri);
         $uri->getPort();
         $this->assertEquals($origUri, $uri->toString());
     }
@@ -243,7 +249,7 @@ class HttpTest extends TestCase
     public function testGetPortDoesntModifyUrlHttps()
     {
         $origUri = 'https://www.example.com/foo';
-        $uri = new HttpUri($origUri);
+        $uri     = new HttpUri($origUri);
         $uri->getPort();
         $this->assertEquals($origUri, $uri->toString());
     }

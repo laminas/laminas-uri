@@ -12,6 +12,8 @@ use Laminas\Uri\Exception\InvalidUriPartException;
 use Laminas\Uri\File as FileUri;
 use PHPUnit\Framework\TestCase;
 
+use function var_export;
+
 /**
  * @group      Laminas_Uri
  * @group      Laminas_Uri_Http
@@ -24,9 +26,7 @@ class FileTest extends TestCase
      */
 
     /**
-     * Valid schemes
-     *
-     * @return array
+     * @return array<int,array<int,string>>
      */
     public static function validSchemeProvider()
     {
@@ -38,9 +38,7 @@ class FileTest extends TestCase
     }
 
     /**
-     * Invalid schemes
-     *
-     * @return array
+     * @return array<int,array<int,string>>
      */
     public static function invalidSchemeProvider()
     {
@@ -48,10 +46,13 @@ class FileTest extends TestCase
             ['mailto'],
             ['http'],
             ['g'],
-            ['file:']
+            ['file:'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public static function invalidUris()
     {
         return [
@@ -62,6 +63,9 @@ class FileTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public static function validUris()
     {
         return [
@@ -74,6 +78,9 @@ class FileTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public static function unixUris()
     {
         return [
@@ -84,6 +91,9 @@ class FileTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public static function windowsUris()
     {
         return [
@@ -103,7 +113,7 @@ class FileTest extends TestCase
      */
     public function testValidScheme($scheme)
     {
-        $uri = new FileUri;
+        $uri = new FileUri();
         $uri->setScheme($scheme);
         $this->assertEquals($scheme, $uri->getScheme());
     }
@@ -116,7 +126,7 @@ class FileTest extends TestCase
      */
     public function testInvalidScheme($scheme)
     {
-        $uri = new FileUri;
+        $uri = new FileUri();
         $this->expectException(InvalidUriPartException::class);
         $uri->setScheme($scheme);
     }
@@ -134,11 +144,12 @@ class FileTest extends TestCase
     }
 
     /**
+     * @param string $uri
      * @dataProvider invalidUris
      */
     public function testInvalidFileUris($uri)
     {
-        $uri = new FileUri($uri);
+        $uri   = new FileUri($uri);
         $parts = [
             'scheme'    => $uri->getScheme(),
             'user_info' => $uri->getUserInfo(),
@@ -152,11 +163,12 @@ class FileTest extends TestCase
     }
 
     /**
+     * @param string $uri
      * @dataProvider validUris
      */
     public function testValidFileUris($uri)
     {
-        $uri = new FileUri($uri);
+        $uri   = new FileUri($uri);
         $parts = [
             'scheme'    => $uri->getScheme(),
             'user_info' => $uri->getUserInfo(),
@@ -182,6 +194,8 @@ class FileTest extends TestCase
     }
 
     /**
+     * @param string $path
+     * @param string $expected
      * @dataProvider unixUris
      */
     public function testCanCreateUriObjectFromUnixPath($path, $expected)
@@ -192,6 +206,8 @@ class FileTest extends TestCase
     }
 
     /**
+     * @param string $path
+     * @param string $expected
      * @dataProvider windowsUris
      */
     public function testCanCreateUriObjectFromWindowsPath($path, $expected)
