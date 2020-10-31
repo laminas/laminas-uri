@@ -170,8 +170,7 @@ interface UriInterface
      *
      * @param  string $userInfo
      * @return Uri
-     * @throws Exception\InvalidUriPartException If the schema definition
-     * does not have this part
+     * @throws Exception\InvalidUriPartException If the schema definition does not have this part.
      */
     public function setUserInfo($userInfo);
 
@@ -228,8 +227,7 @@ interface UriInterface
      *
      * @param  string $fragment
      * @return Uri
-     * @throws Exception\InvalidUriPartException If the schema definition
-     * does not have this part
+     * @throws Exception\InvalidUriPartException If the schema definition does not have this part.
      */
     public function setFragment($fragment);
 

@@ -11,6 +11,13 @@ namespace LaminasTest\Uri;
 use Laminas\Uri\Exception as UriException;
 use Laminas\Uri\Uri;
 use PHPUnit\Framework\TestCase;
+use stdClass;
+
+use function call_user_func_array;
+use function serialize;
+use function strtolower;
+use function ucfirst;
+use function urlencode;
 
 /**
  * @group      Laminas_Uri
@@ -44,7 +51,7 @@ class UriTest extends TestCase
      */
     public function testComposeNewUriAndCastToString($exp, $parts)
     {
-        $uri = new Uri;
+        $uri = new Uri();
         foreach ($parts as $k => $v) {
             $setMethod = 'set' . ucfirst($k);
             $uri->$setMethod($v);
@@ -111,8 +118,8 @@ class UriTest extends TestCase
     public function testCanParseMalformedUrlLaminas11286()
     {
         $urlString = 'http://example.org/SitePages/file has spaces.html?foo=bar';
-        $uri = new Uri($urlString);
-        $fixedUri = new Uri($uri->toString());
+        $uri       = new Uri($urlString);
+        $fixedUri  = new Uri($uri->toString());
 
         $this->assertEquals('/SitePages/file%20has%20spaces.html', $fixedUri->getPath());
     }
@@ -234,7 +241,7 @@ class UriTest extends TestCase
         $exp = [
             'test' => 'a',
             'var'  => [1, 2],
-            'some' => ['thing' => 3]
+            'some' => ['thing' => 3],
         ];
 
         $this->assertEquals($exp, $url->getQueryAsArray());
@@ -263,7 +270,6 @@ class UriTest extends TestCase
 
     /**
      * Test we can set the scheme to NULL
-     *
      */
     public function testSetSchemeNull()
     {
@@ -282,7 +288,7 @@ class UriTest extends TestCase
      */
     public function testSetSchemeValid($scheme)
     {
-        $uri = new Uri;
+        $uri = new Uri();
         $uri->setScheme($scheme);
         $this->assertEquals($scheme, $uri->getScheme());
     }
@@ -295,7 +301,7 @@ class UriTest extends TestCase
      */
     public function testSetInvalidScheme($scheme)
     {
-        $uri = new Uri;
+        $uri = new Uri();
         $this->expectException(UriException\InvalidUriPartException::class);
         $uri->setScheme($scheme);
     }
@@ -308,7 +314,7 @@ class UriTest extends TestCase
      */
     public function testSetGetValidHost($host)
     {
-        $uri = new Uri;
+        $uri = new Uri();
         $uri->setHost($host);
         $this->assertEquals(strtolower($host), $uri->getHost());
     }
@@ -321,14 +327,13 @@ class UriTest extends TestCase
      */
     public function testSetInvalidHost($host)
     {
-        $uri = new Uri;
+        $uri = new Uri();
         $this->expectException(UriException\InvalidUriPartException::class);
         $uri->setHost($host);
     }
 
     /**
      * Test that we can set the host part to 'null'
-     *
      */
     public function testSetNullHost()
     {
@@ -383,7 +388,6 @@ class UriTest extends TestCase
     /**
      * Test that invalid URIs fail validation
      *
-     * @param \Laminas\Uri\Uri $uri
      * @dataProvider invalidUriObjectProvider
      */
     public function testInvalidUriIsInvalid(Uri $uri)
@@ -394,7 +398,6 @@ class UriTest extends TestCase
     /**
      * Test that invalid relative URIs fail validation
      *
-     * @param \Laminas\Uri\Uri $uri
      * @dataProvider invalidRelativeUriObjectProvider
      */
     public function testInvalidRelativeUriIsInvalid(Uri $uri)
@@ -494,7 +497,7 @@ class UriTest extends TestCase
     /**
      * Test that valid query or fragment parts are validated properly
      *
-     * @param $input
+     * @param string $input
      * @dataProvider validQueryFragmentProvider
      */
     public function testValidQueryFragment($input)
@@ -505,10 +508,10 @@ class UriTest extends TestCase
     /**
      * Test that invalid query or fragment parts are validated properly
      *
-     * @param $input
+     * @param string $input
      * @dataProvider invalidQueryFragmentProvider
      */
-    public function testInvalidQueryFragment($input, $exp)
+    public function testInvalidQueryFragment($input)
     {
         $this->assertFalse(Uri::validateQueryFragment($input));
     }
@@ -516,8 +519,8 @@ class UriTest extends TestCase
     /**
      * Test that valid query or fragment parts properly encoded
      *
-     * @param $input
-     * @param $exp
+     * @param string $input
+     * @param string $exp
      * @dataProvider invalidQueryFragmentProvider
      */
     public function testEncodeInvalidQueryFragment($input, $exp)
@@ -530,8 +533,7 @@ class UriTest extends TestCase
      * Test that valid query or fragment parts are not modified when paseed
      * through encodeQueryFragment()
      *
-     * @param $input
-     * @param $exp
+     * @param string $input
      * @dataProvider validQueryFragmentProvider
      */
     public function testEncodeValidQueryFragment($input)
@@ -555,10 +557,9 @@ class UriTest extends TestCase
      * Test that invalid userInfo input is not accepted by validateUserInfo
      *
      * @param string $userInfo
-     * @param string $exp
      * @dataProvider invalidUserInfoProvider
      */
-    public function testValidateUserInfoInvalid($userInfo, $exp)
+    public function testValidateUserInfoInvalid($userInfo)
     {
         $this->assertFalse(Uri::validateUserInfo($userInfo));
     }
@@ -566,7 +567,7 @@ class UriTest extends TestCase
     /**
      * Test that valid userInfo is returned unchanged by encodeUserInfo
      *
-     * @param $userInfo
+     * @param string $userInfo
      * @dataProvider validUserInfoProvider
      */
     public function testEncodeUserInfoValid($userInfo)
@@ -647,6 +648,7 @@ class UriTest extends TestCase
      * Test that resolving relative URIs works using the examples specified in
      * the RFC
      *
+     * @param string $baseUrl
      * @param string $relative
      * @param string $expected
      * @dataProvider resolvedAbsoluteUriProvider
@@ -662,8 +664,8 @@ class UriTest extends TestCase
     /**
      * Test the removal of extra dot segments from paths
      *
-     * @param        $orig
-     * @param        $expected
+     * @param string $orig
+     * @param string $expected
      * @dataProvider pathWithDotSegmentProvider
      */
     public function testRemovePathDotSegments($orig, $expected)
@@ -704,7 +706,6 @@ class UriTest extends TestCase
      * This performs two checks:
      *  1. That the result object is *not* the same object as any of the input ones
      *  2. That the method doesn't modify the input objects
-     *
      */
     public function testMergeTwoObjectsNotModifying()
     {
@@ -726,6 +727,9 @@ class UriTest extends TestCase
     /**
      * Test that makeRelative() works as expected
      *
+     * @param string $base
+     * @param string $url
+     * @param string $expected
      * @dataProvider commonBaseUriProvider
      */
     public function testMakeRelative($base, $url, $expected)
@@ -742,11 +746,12 @@ class UriTest extends TestCase
     /**
      * Test that the copy constructor works
      *
+     * @param string $uriString
      * @dataProvider validUriStringProvider
      */
     public function testConstructorCopyExistingObject($uriString)
     {
-        $uri = new Uri($uriString);
+        $uri  = new Uri($uriString);
         $uri2 = new Uri($uri);
 
         $this->assertEquals($uri, $uri2);
@@ -773,7 +778,7 @@ class UriTest extends TestCase
      */
     public function testFluentInterface($method, $params)
     {
-        $uri = new Uri;
+        $uri = new Uri();
         $ret = call_user_func_array([$uri, $method], $params);
         $this->assertSame($uri, $ret);
     }
@@ -782,6 +787,9 @@ class UriTest extends TestCase
      * Data Providers
      */
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function validUserInfoProvider()
     {
         return [
@@ -792,16 +800,19 @@ class UriTest extends TestCase
             ['my-user'],
             ['one:two:three:four'],
             ['my-user-has-%3A-colon:pass'],
-            ['a_.!~*\'(-)n0123Di%25%26:pass;:&=+$,word']
+            ['a_.!~*\'(-)n0123Di%25%26:pass;:&=+$,word'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function invalidUserInfoProvider()
     {
         return [
             ['an`di:password',    'an%60di:password'],
             ['user name',         'user%20name'],
-            ['shahar.e@zend.com', 'shahar.e%40zend.com']
+            ['shahar.e@zend.com', 'shahar.e%40zend.com'],
         ];
     }
 
@@ -876,7 +887,7 @@ class UriTest extends TestCase
             ['h2'],
             ['a+b'],
             ['k-'],
-         ];
+        ];
     }
 
     /**
@@ -940,25 +951,25 @@ class UriTest extends TestCase
     public function invalidUriObjectProvider()
     {
         // Empty URI is not valid
-        $obj1 = new Uri;
+        $obj1 = new Uri();
 
         // Path cannot begin with '//' if there is no authority part
-        $obj2 = new Uri;
+        $obj2 = new Uri();
         $obj2->setPath('//path');
 
         // A port-only URI with no host
-        $obj3 = new Uri;
+        $obj3 = new Uri();
         $obj3->setPort(123);
 
         // A userinfo-only URI with no host
-        $obj4 = new Uri;
+        $obj4 = new Uri();
         $obj4->setUserInfo('shahar:password');
 
         return [
             [$obj1],
             [$obj2],
             [$obj3],
-            [$obj4]
+            [$obj4],
         ];
     }
 
@@ -970,26 +981,26 @@ class UriTest extends TestCase
     public function invalidRelativeUriObjectProvider()
     {
         // Empty URI is not valid
-        $obj1 = new Uri;
+        $obj1 = new Uri();
 
         // Path cannot begin with '//'
-        $obj2 = new Uri;
+        $obj2 = new Uri();
         $obj2->setPath('//path');
 
         // An object with port
-        $obj3 = new Uri;
+        $obj3 = new Uri();
         $obj3->setPort(123);
 
         // An object with userInfo
-        $obj4 = new Uri;
+        $obj4 = new Uri();
         $obj4->setUserInfo('shahar:password');
 
         // An object with scheme
-        $obj5 = new Uri;
+        $obj5 = new Uri();
         $obj5->setScheme('https');
 
         // An object with host
-        $obj6 = new Uri;
+        $obj6 = new Uri();
         $obj6->setHost('example.com');
 
         return [
@@ -998,10 +1009,9 @@ class UriTest extends TestCase
             [$obj3],
             [$obj4],
             [$obj5],
-            [$obj6]
+            [$obj6],
         ];
     }
-
 
     /**
      * Data provider for valid URIs with their different parts
@@ -1011,38 +1021,56 @@ class UriTest extends TestCase
     public function uriWithPartsProvider()
     {
         return [
-            ['ht-tp://server/path?query', [
-                'scheme'   => 'ht-tp',
-                'host'     => 'server',
-                'path'     => '/path',
-                'query'    => 'query',
-            ]],
-            ['file:///foo/bar', [
-                'scheme'   => 'file',
-                'host'     => '',
-                'path'     => '/foo/bar',
-            ]],
-            ['http://dude:lebowski@example.com/#fr/ag?me.nt', [
-                'scheme'   => 'http',
-                'userInfo' => 'dude:lebowski',
-                'host'     => 'example.com',
-                'path'     => '/',
-                'fragment' => 'fr/ag?me.nt'
-            ]],
-            ['/relative/path', [
-                'path' => '/relative/path'
-            ]],
-            ['ftp://example.com:5555', [
-                'scheme' => 'ftp',
-                'host'   => 'example.com',
-                'port'   => 5555,
-                'path'   => ''
-            ]],
-            ['http://example.com/foo//bar/baz//fob/', [
-                'scheme' => 'http',
-                'host'   => 'example.com',
-                'path'   => '/foo//bar/baz//fob/'
-            ]]
+            [
+                'ht-tp://server/path?query',
+                [
+                    'scheme' => 'ht-tp',
+                    'host'   => 'server',
+                    'path'   => '/path',
+                    'query'  => 'query',
+                ],
+            ],
+            [
+                'file:///foo/bar',
+                [
+                    'scheme' => 'file',
+                    'host'   => '',
+                    'path'   => '/foo/bar',
+                ],
+            ],
+            [
+                'http://dude:lebowski@example.com/#fr/ag?me.nt',
+                [
+                    'scheme'   => 'http',
+                    'userInfo' => 'dude:lebowski',
+                    'host'     => 'example.com',
+                    'path'     => '/',
+                    'fragment' => 'fr/ag?me.nt',
+                ],
+            ],
+            [
+                '/relative/path',
+                [
+                    'path' => '/relative/path',
+                ],
+            ],
+            [
+                'ftp://example.com:5555',
+                [
+                    'scheme' => 'ftp',
+                    'host'   => 'example.com',
+                    'port'   => 5555,
+                    'path'   => '',
+                ],
+            ],
+            [
+                'http://example.com/foo//bar/baz//fob/',
+                [
+                    'scheme' => 'http',
+                    'host'   => 'example.com',
+                    'path'   => '/foo//bar/baz//fob/',
+                ],
+            ],
         ];
     }
 
@@ -1058,7 +1086,7 @@ class UriTest extends TestCase
             [1],
             [0xffff],
             [80],
-            ['443']
+            ['443'],
         ];
     }
 
@@ -1077,10 +1105,13 @@ class UriTest extends TestCase
             ['0xf'],
             ['-'],
             [':'],
-            ['/']
+            ['/'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function validHostProvider()
     {
         return [
@@ -1115,10 +1146,13 @@ class UriTest extends TestCase
             ['some~unre_served.ch4r5'],
             ['pct.%D7%A9%D7%97%D7%A8%20%D7%94%D7%92%D7%93%D7%95%D7%9C.co.il'],
             ['sub-delims-!$&\'()*+,;=.are.ok'],
-            ['%2F%3A']
+            ['%2F%3A'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function invalidHostProvider()
     {
         return [
@@ -1128,6 +1162,9 @@ class UriTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function validPathProvider()
     {
         return [
@@ -1145,6 +1182,9 @@ class UriTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function invalidPathProvider()
     {
         return [
@@ -1152,7 +1192,7 @@ class UriTest extends TestCase
             ['/#', '/%23'],
 
             // See https://getlaminas.org/issues/browse/Laminas-11286
-            ['Giri%C5%9F Sayfas%C4%B1.aspx', 'Giri%C5%9F%20Sayfas%C4%B1.aspx']
+            ['Giri%C5%9F Sayfas%C4%B1.aspx', 'Giri%C5%9F%20Sayfas%C4%B1.aspx'],
         ];
     }
 
@@ -1165,16 +1205,16 @@ class UriTest extends TestCase
     public function fluentInterfaceMethodProvider()
     {
         return [
-            ['setScheme',    ['file']],
-            ['setUserInfo',  ['userInfo']],
-            ['setHost',      ['example.com']],
-            ['setPort',      [80]],
-            ['setPath',      ['/baz/baz']],
-            ['setQuery',     ['foo=bar']],
-            ['setFragment',  ['part2']],
+            ['setScheme', ['file']],
+            ['setUserInfo', ['userInfo']],
+            ['setHost', ['example.com']],
+            ['setPort', [80]],
+            ['setPath', ['/baz/baz']],
+            ['setQuery', ['foo=bar']],
+            ['setFragment', ['part2']],
             ['makeRelative', ['http://foo.bar/']],
-            ['resolve',      ['http://foo.bar/']],
-            ['normalize',    []]
+            ['resolve', ['http://foo.bar/']],
+            ['normalize', []],
         ];
     }
 
@@ -1184,7 +1224,7 @@ class UriTest extends TestCase
      * These examples are taken from RFC-3986 section about relative URI
      * resolving (@link http://tools.ietf.org/html/rfc3986#section-5.4).
      *
-     * @return array
+     * @return array<int,array<int,string>>
      */
     public function resolvedAbsoluteUriProvider()
     {
@@ -1237,39 +1277,51 @@ class UriTest extends TestCase
      * Data provider for arrays of query string parameters, with the expected
      * query string
      *
-     * @return array
+     * @return array<int,array<int,string>>
      */
     public function queryParamsArrayProvider()
     {
         return [
-            [[
-                'foo' => 'bar',
-                'baz' => 'waka'
-            ], 'foo=bar&baz=waka'],
-            [[
-                'some key' => 'some crazy value?!#[]&=%+',
-                '1'        => ''
-            ], 'some%20key=some%20crazy%20value%3F%21%23%5B%5D%26%3D%25%2B&1='],
-            [[
-                'array'        => ['foo', 'bar', 'baz'],
-                'otherstuff[]' => 1234
-            ], 'array%5B0%5D=foo&array%5B1%5D=bar&array%5B2%5D=baz&otherstuff%5B%5D=1234']
+            [
+                [
+                    'foo' => 'bar',
+                    'baz' => 'waka',
+                ],
+                'foo=bar&baz=waka',
+            ],
+            [
+                [
+                    'some key' => 'some crazy value?!#[]&=%+',
+                    '1'        => '',
+                ],
+                'some%20key=some%20crazy%20value%3F%21%23%5B%5D%26%3D%25%2B&1=',
+            ],
+            [
+                [
+                    'array'        => ['foo', 'bar', 'baz'],
+                    'otherstuff[]' => 1234,
+                ],
+                'array%5B0%5D=foo&array%5B1%5D=bar&array%5B2%5D=baz&otherstuff%5B%5D=1234',
+            ],
         ];
     }
 
     /**
      * Provider for testing removal of extra dot segments in paths
      *
-     * @return array
+     * @return array<int,array<int,string>>
      */
     public function pathWithDotSegmentProvider()
     {
         return [
             ['/a/b/c/./../../g',   '/a/g'],
-            ['mid/content=5/../6', 'mid/6']
+            ['mid/content=5/../6', 'mid/6'],
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function normalizedUrlsProvider()
     {
         return [
@@ -1278,7 +1330,6 @@ class UriTest extends TestCase
             ['FOO:/bar/with space?que%3fry#frag%ment#', 'foo:/bar/with%20space?que?ry#frag%25ment%23'],
             ['/path/%68%65%6c%6c%6f/world', '/path/hello/world'],
             ['/foo/bar?url=http%3A%2F%2Fwww.example.com%2Fbaz', '/foo/bar?url=http://www.example.com/baz'],
-
             ['/urlencoded/params?chars=' . urlencode('+&=;%20#'), '/urlencoded/params?chars=%2B%26%3D%3B%2520%23'],
             ['File:///SitePages/fi%6ce%20has%20spaces', 'file:///SitePages/file%20has%20spaces'],
             ['/foo/bar/../baz?do=action#showFragment', '/foo/baz?do=action#showFragment'],
@@ -1291,27 +1342,29 @@ class UriTest extends TestCase
         ];
     }
 
+    /**
+     * @return array<int,array<int,string>>
+     */
     public function commonBaseUriProvider()
     {
         return [
-             [
-                 'http://example.com/dir/subdir/',
-                 'http://example.com/dir/subdir/more/file1.txt',
-                 'more/file1.txt',
-             ],
-             [
-                 'http://example.com/dir/subdir/',
-                 'http://example.com/dir/otherdir/file2.txt',
-                 '../otherdir/file2.txt',
-             ],
-             [
-                 'http://example.com/dir/subdir/',
-                 'http://otherhost.com/dir/subdir/file3.txt',
-                 'http://otherhost.com/dir/subdir/file3.txt',
-             ],
+            [
+                'http://example.com/dir/subdir/',
+                'http://example.com/dir/subdir/more/file1.txt',
+                'more/file1.txt',
+            ],
+            [
+                'http://example.com/dir/subdir/',
+                'http://example.com/dir/otherdir/file2.txt',
+                '../otherdir/file2.txt',
+            ],
+            [
+                'http://example.com/dir/subdir/',
+                'http://otherhost.com/dir/subdir/file3.txt',
+                'http://otherhost.com/dir/subdir/file3.txt',
+            ],
         ];
     }
-
 
     /**
      * Provider for testing the constructor's behavior on invalid input
@@ -1321,11 +1374,11 @@ class UriTest extends TestCase
     public function invalidConstructorInputProvider()
     {
         return [
-            [new \stdClass()],
+            [new stdClass()],
             [false],
             [true],
             [['scheme' => 'http']],
-            [12]
+            [12],
         ];
     }
 
@@ -1343,13 +1396,13 @@ class UriTest extends TestCase
             [new Uri('http://foo.bar')],
             [null],
             [12],
-            [['scheme' => 'http', 'host' => 'example.com']]
+            [['scheme' => 'http', 'host' => 'example.com']],
         ];
     }
 
     public function testParseTwice()
     {
-        $uri  = new Uri();
+        $uri = new Uri();
         $uri->parse('http://user@example.com:1/absolute/url?query#fragment');
         $uri->parse('/relative/url');
         $this->assertNull($uri->getScheme());
@@ -1376,7 +1429,7 @@ class UriTest extends TestCase
     public function testUriWithEndingColonWithoutPort()
     {
         $uriString = 'http://www.example.com:';
-        $uri = new Uri($uriString);
+        $uri       = new Uri($uriString);
 
         $this->assertSame('www.example.com', $uri->getHost());
         $this->assertNull($uri->getPort());

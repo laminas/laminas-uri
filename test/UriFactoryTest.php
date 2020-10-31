@@ -8,6 +8,10 @@
 
 namespace LaminasTest\Uri;
 
+use Laminas\Uri\Exception\InvalidArgumentException;
+use Laminas\Uri\File;
+use Laminas\Uri\Http;
+use Laminas\Uri\Mailto;
 use Laminas\Uri\UriFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -29,15 +33,17 @@ class UriFactoryTest extends TestCase
      */
     public function testRegisteringNewScheme($scheme, $class)
     {
-        $this->assertAttributeNotContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
+        $this->assertAttributeNotContains($class, 'schemeClasses', UriFactory::class);
         UriFactory::registerScheme($scheme, $class);
-        $this->assertAttributeContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
+        $this->assertAttributeContains($class, 'schemeClasses', UriFactory::class);
         UriFactory::unregisterScheme($scheme);
-        $this->assertAttributeNotContains($class, 'schemeClasses', '\Laminas\Uri\UriFactory');
+        $this->assertAttributeNotContains($class, 'schemeClasses', UriFactory::class);
     }
 
     /**
      * Provide the data for the RegisterNewScheme-test
+     *
+     * @return array<int,array<int,string>>
      */
     public function registeringNewSchemeProvider()
     {
@@ -52,7 +58,6 @@ class UriFactoryTest extends TestCase
      *
      * @param string $uri           THe URI to create
      * @param string $expectedClass The class expected
-     *
      * @dataProvider createUriWithFactoryProvider
      */
     public function testCreateUriWithFactory($uri, $expectedClass)
@@ -69,10 +74,10 @@ class UriFactoryTest extends TestCase
     public function createUriWithFactoryProvider()
     {
         return [
-            ['http://example.com', 'Laminas\Uri\Http'],
-            ['https://example.com', 'Laminas\Uri\Http'],
-            ['mailto://example.com', 'Laminas\Uri\Mailto'],
-            ['file://example.com', 'Laminas\Uri\File'],
+            ['http://example.com', Http::class],
+            ['https://example.com', Http::class],
+            ['mailto://example.com', Mailto::class],
+            ['file://example.com', File::class],
         ];
     }
 
@@ -80,12 +85,12 @@ class UriFactoryTest extends TestCase
      * Test, that unknown Schemes will result in an exception
      *
      * @param string $uri an uri with an unknown scheme
-     * @expectedException \Laminas\Uri\Exception\InvalidArgumentException
      * @dataProvider unknownSchemeThrowsExceptionProvider
      */
     public function testUnknownSchemeThrowsException($uri)
     {
-        $url = UriFactory::factory($uri);
+        $this->expectException(InvalidArgumentException::class);
+        UriFactory::factory($uri);
     }
 
     /**
