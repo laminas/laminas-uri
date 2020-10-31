@@ -1140,7 +1140,10 @@ class Uri implements UriInterface
                     break;
                 case 0 === strpos($path, '/../'):
                     $path         = '/' . substr($path, 4);
-                    $lastSlashPos = strrpos($output, '/', -1);
+                    $lastSlashPos = false;
+                    if ($output !== '') {
+                        $lastSlashPos = strrpos($output, '/', -1);
+                    }
                     if (false === $lastSlashPos) {
                         break;
                     }
