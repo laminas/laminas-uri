@@ -1,7 +1,6 @@
 # laminas-uri
 
-[![Build Status](https://travis-ci.com/laminas/laminas-uri.svg?branch=master)](https://travis-ci.com/laminas/laminas-uri)
-[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-uri/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-uri?branch=master)
+[![Build Status](https://github.com/laminas/laminas-url/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-url/actions?query=workflow%3A"Continuous+Integration")
 
 laminas-uri aids in manipulating and validating Uniform Resource Identifiers
 ([URIs](http://www.ietf.org/rfc/rfc3986.txt)). laminas-uri exists primarily to
@@ -22,6 +21,6 @@ Browse the documentation online at https://docs.laminas.dev/laminas-uri/
 
 ## Support
 
-* [Issues](https://github.com/laminas/laminas-uri/issues/)
-* [Chat](https://laminas.dev/chat/)
-* [Forum](https://discourse.laminas.dev/)
+- [Issues](https://github.com/laminas/laminas-uri/issues/)
+- [Chat](https://laminas.dev/chat/)
+- [Forum](https://discourse.laminas.dev/)
