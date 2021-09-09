@@ -271,7 +271,7 @@
 <h2 id="creating-a-new-uri">Creating a New URI</h2>
 <p><code>Laminas\Uri\UriFactory</code> will build a new URI from scratch if only a scheme is
 passed to <code>Laminas\Uri\UriFactory::factory()</code>.</p>
-<h3>Creating a New URI with LaminasUriUriFactory::factory()</h3>
+<h3 id="creating-a-new-uri-with-laminasuriurifactoryfactory">Creating a New URI with LaminasUriUriFactory::factory()</h3>
 <pre class="highlight"><code class="language-php">// To create a new URI from scratch, pass only the scheme
 // followed by a colon.
 $uri = Laminas\Uri\UriFactory::factory('http:');
@@ -285,11 +285,11 @@ scheme-specific class is specified, a
 return a class implementing <code>Laminas\Uri\UriInterface</code> that specializes in the
 scheme referenced.</p>
 <blockquote>
-<h3>Supported schemes</h3>
+<h3 id="supported-schemes">Supported schemes</h3>
 <p>At the time of writing, laminas-uri provides built-in support for the following
 schemes only: HTTP, HTTPS, MAILTO and FILE.</p>
 </blockquote>
-<h3>Creating a New Custom-Class URI</h3>
+<h3 id="creating-a-new-custom-class-uri">Creating a New Custom-Class URI</h3>
 <p>You can specify a custom class to be used when using the <code>Laminas\Uri\UriFactory</code>
 by registering your class with the <code>UriFactory</code> using
 <code>Laminas\Uri\UriFactory::registerScheme($scheme, $class)</code>.  This enables you to
@@ -298,7 +298,7 @@ custom classes.</p>
 <p>The 2nd parameter passed to <code>Laminas\Uri\UriFactory::registerScheme()</code> must be a
 string with the name of a class implementing <code>Laminas\Uri\UriInterface</code>. The class
 must either be already loaded, or be loadable by the autoloader.</p>
-<h4>Creating a URI using a custom class</h4>
+<h4 id="creating-a-uri-using-a-custom-class">Creating a URI using a custom class</h4>
 <p>The following registers the <code>ftp</code> scheme with a custom URI class:</p>
 <pre class="highlight"><code class="language-php">use MyNamespace\MyClass;
 use Laminas\Uri\UriFactory
@@ -314,7 +314,7 @@ $ftpUri = UriFactory::factory(
 <h2 id="manipulating-an-existing-uri">Manipulating an Existing URI</h2>
 <p>To manipulate an existing URI, pass the entire URI as a string to
 <code>Laminas\Uri\UriFactory::factory()</code>, and then manipulate the instance returned.</p>
-<h3>Manipulating an Existing URI with Laminas\Uri\UriFactory::factory()</h3>
+<h3 id="manipulating-an-existing-uri-with-laminasuriurifactoryfactory">Manipulating an Existing URI with Laminas\Uri\UriFactory::factory()</h3>
 <pre class="highlight"><code class="language-php">use Laminas\Uri\UriFactory;
 
 // To manipulate an existing URI, pass it in.
@@ -328,7 +328,7 @@ Otherwise, <code>Laminas\Uri\UriFactory::factory()</code> will return a class im
 <h2 id="common-instance-methods">Common Instance Methods</h2>
 <p>The <code>Laminas\Uri\UriInterface</code> defines several instance methods that are useful for
 working with any kind of URI.</p>
-<h3>Getting the Scheme of the URI</h3>
+<h3 id="getting-the-scheme-of-the-uri">Getting the Scheme of the URI</h3>
 <p>The scheme of the URI is the part of the URI that precedes the colon. For
 example, the scheme of <code>http://johndoe@example.com/my/path?query#token</code> is
 'http'.</p>
@@ -337,7 +337,7 @@ example, the scheme of <code>http://johndoe@example.com/my/path?query#token</cod
 $scheme = $uri-&gt;getScheme();  // "mailto"</code></pre>
 <p>The <code>getScheme()</code> instance method returns only the scheme part of the URI
 object (not the separator).</p>
-<h3>Getting the Userinfo of the URI</h3>
+<h3 id="getting-the-userinfo-of-the-uri">Getting the Userinfo of the URI</h3>
 <p>The userinfo of the URI is the optional part of the URI that follows the
 colon and comes before the host-part. For example, the userinfo of
 <code>http://johndoe@example.com/my/path?query#token</code> is 'johndoe'.</p>
@@ -345,7 +345,7 @@ colon and comes before the host-part. For example, the userinfo of
 
 $scheme = $uri-&gt;getUserinfo();  // "john.doe"</code></pre>
 <p>The <code>getUserinfo()</code> method returns only the userinfo part of the URI object.</p>
-<h3>Getting the host of the URI</h3>
+<h3 id="getting-the-host-of-the-uri">Getting the host of the URI</h3>
 <p>The host of the URI is the optional part of the URI that follows the
 user-part and comes before the path-part. For example, the host of
 <code>http://johndoe@example.com/my/path?query#token</code> is 'example.com'.</p>
@@ -354,13 +354,13 @@ user-part and comes before the path-part. For example, the host of
 $scheme = $uri-&gt;getHost();  // "example.com"</code></pre>
 <p>The <code>getHost()</code> method returns only the host part of the URI object.</p>
 <blockquote>
-<h3>Host is case insensitive</h3>
+<h3 id="host-is-case-insensitive">Host is case insensitive</h3>
 <p>Per <a href="https://tools.ietf.org/html/rfc3986#section-3.2.2">IETF 3986 Section 3.2.2</a>,
 the host segment of a URL is considered case insensitive. As such, starting in
 version 2.7.0, we now cast the hostname to lowercase, and <code>getHost()</code> will
 always return a lowercase representation.</p>
 </blockquote>
-<h3>Getting the port of the URI</h3>
+<h3 id="getting-the-port-of-the-uri">Getting the port of the URI</h3>
 <p>The port of the URI is the optional part of the URI that follows the host-part
 and comes before the path-part. For example, the host of
 <code>http://johndoe@example.com:80/my/path?query#token</code> is '80'.</p>
@@ -373,7 +373,7 @@ port is given in the URI:</p>
 
 $scheme = $uri-&gt;getPort();  // "80"</code></pre>
 <p>The <code>getHost()</code> method returns only the port part of the URI object.</p>
-<h3>Getting the path of the URI</h3>
+<h3 id="getting-the-path-of-the-uri">Getting the path of the URI</h3>
 <p>The path of the URI is a mandatory part of the URI that follows the port
 and comes before the query-part. For example, the path of
 <code>http://johndoe@example.com:80/my/path?query#token</code> is '/my/path'.</p>
@@ -381,7 +381,7 @@ and comes before the query-part. For example, the path of
 
 $scheme = $uri-&gt;getPath();  // "/my/path"</code></pre>
 <p>The <code>getPath()</code> method returns only the path of the URI object.</p>
-<h3>Getting the query-part of the URI</h3>
+<h3 id="getting-the-query-part-of-the-uri">Getting the query-part of the URI</h3>
 <p>The query-part of the URI is an optional part of the URI that follows the
 path and comes before the fragment. For example, the query of
 <code>http://johndoe@example.com:80/my/path?query#token</code> is 'query'.</p>
@@ -398,7 +398,7 @@ $scheme = $uri-&gt;getQueryAsArray();
 //  'a' =&gt; 'b',
 //  'c' =&gt; 'd',
 // ]</code></pre>
-<h3>Getting the fragment-part of the URI</h3>
+<h3 id="getting-the-fragment-part-of-the-uri">Getting the fragment-part of the URI</h3>
 <p>The fragment-part of the URI is an optional part of the URI that follows
 the query. For example, the fragment of
 <code>http://johndoe@example.com:80/my/path?query#token</code> is 'token'.</p>
@@ -406,7 +406,7 @@ the query. For example, the fragment of
 
 $scheme = $uri-&gt;getFragment();  // "token"</code></pre>
 <p>The <code>getFragment()</code> method returns only the fragment-part of the URI object.</p>
-<h3>Getting the Entire URI</h3>
+<h3 id="getting-the-entire-uri">Getting the Entire URI</h3>
 <p>The <code>toString()</code> method returns the string representation of the entire <em>URI</em>.</p>
 <pre class="highlight"><code class="language-php">$uri = Laminas\Uri\UriFactory::factory('https://www.zend.com');
 
@@ -452,16 +452,6 @@ is still valid.</p>
 </nav>
 
 
-
-
-    <div class="help-wanted">
-        <p>
-            Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/laminas/laminas-uri/edit/master/docs/book/usage.md" target="_blank" class="help-wanted__link">
-                Edit this page on GitHub!
-            </a>
-        </p>
-    </div>
 
                 
             </div>
