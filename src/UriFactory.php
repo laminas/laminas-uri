@@ -101,7 +101,7 @@ abstract class UriFactory
         }
 
         $uri    = new Uri($uriString);
-        $scheme = strtolower($uri->getScheme());
+        $scheme = strtolower($uri->getScheme() ?? '');
         if (! $scheme && $defaultScheme) {
             $scheme = $defaultScheme;
         }

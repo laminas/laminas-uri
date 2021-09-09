@@ -14,9 +14,7 @@ use PHPUnit\Framework\TestCase;
  */
 class UriFactoryTest extends TestCase
 {
-    /**
-     * General composing / parsing tests
-     */
+    // General composing / parsing tests
 
     /**
      * Test registering a new Scheme
@@ -98,5 +96,12 @@ class UriFactoryTest extends TestCase
             ['foo://bar'],
             ['ssh://bar'],
         ];
+    }
+
+    public function testDoesNotRaiseErrorWhenOnlyPathProvided(): void
+    {
+        $path = '/path';
+        $uri  = UriFactory::factory($path);
+        $this->assertSame($path, $uri->getPath());
     }
 }
