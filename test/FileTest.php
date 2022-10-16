@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Uri;
 
 use Laminas\Uri\Exception\InvalidUriPartException;
@@ -153,7 +155,7 @@ class FileTest extends TestCase
             'query'     => $uri->getQueryAsArray(),
             'fragment'  => $uri->getFragment(),
         ];
-        $this->assertFalse($uri->isValid(), var_export($parts, 1));
+        $this->assertFalse($uri->isValid(), var_export($parts, true));
     }
 
     /**
@@ -172,7 +174,7 @@ class FileTest extends TestCase
             'query'     => $uri->getQueryAsArray(),
             'fragment'  => $uri->getFragment(),
         ];
-        $this->assertTrue($uri->isValid(), var_export($parts, 1));
+        $this->assertTrue($uri->isValid(), var_export($parts, true));
     }
 
     public function testUserInfoIsAlwaysNull()
