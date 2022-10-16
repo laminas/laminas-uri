@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Uri;
 
 use Laminas\Uri\Exception as UriException;

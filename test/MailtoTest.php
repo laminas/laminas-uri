@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Uri;
 
 use Laminas\Uri\Exception\InvalidUriPartException;
@@ -153,6 +155,6 @@ class MailtoTest extends TestCase
             'query'     => $uri->getQueryAsArray(),
             'fragment'  => $uri->getFragment(),
         ];
-        $this->assertFalse($uri->isValid(), var_export($parts, 1));
+        $this->assertFalse($uri->isValid(), var_export($parts, true));
     }
 }
