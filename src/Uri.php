@@ -1204,8 +1204,8 @@ class Uri implements UriInterface
         ];
 
         // Test only IPv4
-        $validator = new Validator\Ip($validatorParams);
-        $return    = $validator->isValid($host);
+        $validatorIpV4 = new Validator\Ip($validatorParams);
+        $return        = $validatorIpV4->isValid($host);
         if ($return) {
             return true;
         }
@@ -1218,8 +1218,8 @@ class Uri implements UriInterface
             'allowliteral'   => true,
         ];
         static $regex    = '/^\[.*\]$/';
-        $validator->setOptions($validatorParams);
-        return preg_match($regex, $host) && $validator->isValid($host);
+        $validatorIpV6   = new Validator\Ip($validatorParams);
+        return preg_match($regex, $host) && $validatorIpV6->isValid($host);
     }
 
     /**
