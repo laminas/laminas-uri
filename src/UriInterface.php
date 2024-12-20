@@ -10,7 +10,7 @@ interface UriInterface
     /**
      * Create a new URI object
      *
-     * @param  Uri|string|null $uri
+     * @param  UriInterface|string|null $uri
      * @throws Exception\InvalidArgumentException
      */
     public function __construct($uri = null);
@@ -42,7 +42,7 @@ interface UriInterface
      * Parse a URI string
      *
      * @param  string $uri
-     * @return Uri
+     * @return static
      */
     public function parse($uri);
 
@@ -65,7 +65,7 @@ interface UriInterface
      * Eventually, two normalized URLs pointing to the same resource should be
      * equal even if they were originally represented by two different strings
      *
-     * @return Uri
+     * @return static
      */
     public function normalize();
 
@@ -79,7 +79,7 @@ interface UriInterface
      *  way related to the base URI) the URI will not be modified.
      *
      * @param  Uri|string $baseUri
-     * @return Uri
+     * @return static
      */
     public function makeRelative($baseUri);
 
@@ -155,7 +155,7 @@ interface UriInterface
      *
      * @param  string $scheme
      * @throws Exception\InvalidUriPartException
-     * @return Uri
+     * @return static
      */
     public function setScheme($scheme);
 
@@ -163,7 +163,7 @@ interface UriInterface
      * Set the URI User-info part (usually user:password)
      *
      * @param  string $userInfo
-     * @return Uri
+     * @return static
      * @throws Exception\InvalidUriPartException If the schema definition does not have this part.
      */
     public function setUserInfo($userInfo);
@@ -184,7 +184,7 @@ interface UriInterface
      *
      * @param  string $host
      * @throws Exception\InvalidUriPartException
-     * @return Uri
+     * @return static
      */
     public function setHost($host);
 
@@ -192,7 +192,7 @@ interface UriInterface
      * Set the port part of the URI
      *
      * @param  int $port
-     * @return Uri
+     * @return static
      */
     public function setPort($port);
 
@@ -200,7 +200,7 @@ interface UriInterface
      * Set the path
      *
      * @param  string $path
-     * @return Uri
+     * @return static
      */
     public function setPath($path);
 
@@ -212,7 +212,7 @@ interface UriInterface
      * PHP's common square bracket notation.
      *
      * @param  string|array $query
-     * @return Uri
+     * @return static
      */
     public function setQuery($query);
 
@@ -220,7 +220,7 @@ interface UriInterface
      * Set the URI fragment part
      *
      * @param  string $fragment
-     * @return Uri
+     * @return static
      * @throws Exception\InvalidUriPartException If the schema definition does not have this part.
      */
     public function setFragment($fragment);
