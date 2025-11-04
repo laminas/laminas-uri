@@ -200,7 +200,8 @@ class Http extends Uri
     public function getPort()
     {
         if (empty($this->port)) {
-            if (array_key_exists($this->scheme, static::$defaultPorts)) {
+            $scheme = $this->scheme ?? '';
+            if (array_key_exists($scheme, static::$defaultPorts)) {
                 return static::$defaultPorts[$this->scheme];
             }
         }
