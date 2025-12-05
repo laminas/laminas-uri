@@ -24,7 +24,7 @@ class HttpTest extends TestCase
      *
      * @return array
      */
-    public function validSchemeProvider()
+    public static function validSchemeProvider()
     {
         return [
             ['http'],
@@ -37,7 +37,7 @@ class HttpTest extends TestCase
     /**
      * @return array<int,array<int,string|bool>>
      */
-    public function validHostProvider()
+    public static function validHostProvider()
     {
         return [
             ['',                                   false],
@@ -70,7 +70,7 @@ class HttpTest extends TestCase
      *
      * @return array
      */
-    public function invalidSchemeProvider()
+    public static function invalidSchemeProvider()
     {
         return [
             ['file'],
@@ -83,7 +83,7 @@ class HttpTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function portNormalizationTestsProvider()
+    public static function portNormalizationTestsProvider()
     {
         return [
             ['http://www.example.com:80/foo/bar', 'http://www.example.com/foo/bar'],

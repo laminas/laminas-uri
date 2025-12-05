@@ -786,7 +786,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function validUserInfoProvider()
+    public static function validUserInfoProvider()
     {
         return [
             ['user:'],
@@ -803,7 +803,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function invalidUserInfoProvider()
+    public static function invalidUserInfoProvider()
     {
         return [
             ['an`di:password',    'an%60di:password'],
@@ -817,7 +817,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function validUriStringProvider()
+    public static function validUriStringProvider()
     {
         return [
             ['a:b'],
@@ -857,7 +857,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function validRelativeUriStringProvider()
+    public static function validRelativeUriStringProvider()
     {
         return [
             ['foo/bar?query'],
@@ -872,7 +872,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function validSchemeProvider()
+    public static function validSchemeProvider()
     {
         return [
             // Valid schemes
@@ -891,7 +891,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function invalidSchemeProvider()
+    public static function invalidSchemeProvider()
     {
         return [
             ['ht tp'],
@@ -910,7 +910,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function validQueryFragmentProvider()
+    public static function validQueryFragmentProvider()
     {
         return [
             ['a=1&b=2&c=3&d=4'],
@@ -928,7 +928,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function invalidQueryFragmentProvider()
+    public static function invalidQueryFragmentProvider()
     {
         return [
             ['with#pound', 'with%23pound'],
@@ -944,7 +944,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function invalidUriObjectProvider()
+    public static function invalidUriObjectProvider()
     {
         // Empty URI is not valid
         $obj1 = new Uri();
@@ -974,7 +974,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function invalidRelativeUriObjectProvider()
+    public static function invalidRelativeUriObjectProvider()
     {
         // Empty URI is not valid
         $obj1 = new Uri();
@@ -1014,7 +1014,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function uriWithPartsProvider()
+    public static function uriWithPartsProvider()
     {
         return [
             [
@@ -1075,7 +1075,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function validPortProvider()
+    public static function validPortProvider()
     {
         return [
             [null],
@@ -1091,7 +1091,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function invalidPortProvider()
+    public static function invalidPortProvider()
     {
         return [
             [0],
@@ -1108,7 +1108,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function validHostProvider()
+    public static function validHostProvider()
     {
         return [
             // IPv4 addresses
@@ -1149,7 +1149,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function invalidHostProvider()
+    public static function invalidHostProvider()
     {
         return [
             ['with space'],
@@ -1161,7 +1161,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function validPathProvider()
+    public static function validPathProvider()
     {
         return [
             [''],
@@ -1181,7 +1181,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function invalidPathProvider()
+    public static function invalidPathProvider()
     {
         return [
             ['?', '%3F'],
@@ -1198,7 +1198,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function fluentInterfaceMethodProvider()
+    public static function fluentInterfaceMethodProvider()
     {
         return [
             ['setScheme', ['file']],
@@ -1222,7 +1222,7 @@ class UriTest extends TestCase
      *
      * @return array<int,array<int,string>>
      */
-    public function resolvedAbsoluteUriProvider()
+    public static function resolvedAbsoluteUriProvider()
     {
         return [
             // Normal examples
@@ -1275,7 +1275,7 @@ class UriTest extends TestCase
      *
      * @return array<int,array<int,string>>
      */
-    public function queryParamsArrayProvider()
+    public static function queryParamsArrayProvider()
     {
         return [
             [
@@ -1307,7 +1307,7 @@ class UriTest extends TestCase
      *
      * @return array<int,array<int,string>>
      */
-    public function pathWithDotSegmentProvider()
+    public static function pathWithDotSegmentProvider()
     {
         return [
             ['/a/b/c/./../../g',   '/a/g'],
@@ -1318,7 +1318,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function normalizedUrlsProvider()
+    public static function normalizedUrlsProvider()
     {
         return [
             ['hTtp://example.com', 'http://example.com/'],
@@ -1341,7 +1341,7 @@ class UriTest extends TestCase
     /**
      * @return array<int,array<int,string>>
      */
-    public function commonBaseUriProvider()
+    public static function commonBaseUriProvider()
     {
         return [
             [
@@ -1367,7 +1367,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function invalidConstructorInputProvider()
+    public static function invalidConstructorInputProvider()
     {
         return [
             [new stdClass()],
@@ -1386,7 +1386,7 @@ class UriTest extends TestCase
      *
      * @return array
      */
-    public function notStringInputProvider()
+    public static function notStringInputProvider()
     {
         return [
             [new Uri('http://foo.bar')],
