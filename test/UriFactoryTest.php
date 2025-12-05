@@ -39,7 +39,7 @@ class UriFactoryTest extends TestCase
      *
      * @return array<int,array<int,string>>
      */
-    public function registeringNewSchemeProvider()
+    public static function registeringNewSchemeProvider()
     {
         return [
             ['ssh', 'Foo\Bar\Class'],
@@ -65,7 +65,7 @@ class UriFactoryTest extends TestCase
      *
      * @return array
      */
-    public function createUriWithFactoryProvider()
+    public static function createUriWithFactoryProvider()
     {
         return [
             ['http://example.com', Http::class],
@@ -92,7 +92,7 @@ class UriFactoryTest extends TestCase
      *
      * @return array
      */
-    public function unknownSchemeThrowsExceptionProvider()
+    public static function unknownSchemeThrowsExceptionProvider()
     {
         return [
             ['foo://bar'],
